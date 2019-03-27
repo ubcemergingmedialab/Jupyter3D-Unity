@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b1c930c612dbc469d258783cb8be34, type: 3}
+  m_Name: __actions_htc_viu_in_viu_axis_4y
+  m_EditorClassIdentifier: 
+  changeTolerance: 0.000001
+  fullPath: /actions/htc_viu/in/viu_axis_4y
+  actionSet: {fileID: 11400000, guid: 737408039f64bb844803f303e9e29c53, type: 2}
+  direction: 0
