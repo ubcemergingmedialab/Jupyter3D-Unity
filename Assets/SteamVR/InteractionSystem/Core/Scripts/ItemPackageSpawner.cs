@@ -43,6 +43,7 @@ namespace Valve.VR.InteractionSystem
 
 		[EnumFlags]
 		public Hand.AttachmentFlags attachmentFlags = Hand.defaultAttachmentFlags;
+		public string attachmentPoint;
 
 		public bool takeBackItem = false; // if a hand enters this trigger and has the item this spawner dispenses at the top of the stack, remove it from the stack
 
@@ -171,12 +172,12 @@ namespace Valve.VR.InteractionSystem
 
 			if ( !requireTriggerPressToTake ) // we don't require trigger press for pickup. Spawn and attach object.
 			{
-				SpawnAndAttachObject( hand, GrabTypes.Scripted );
+				SpawnAndAttachObject( hand );
 			}
 
 			if ( requireTriggerPressToTake && showTriggerHint )
 			{
-                hand.ShowGrabHint("PickUp");
+				ControllerButtonHints.ShowTextHint( hand, Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger, "PickUp" );
 			}
 		}
 
@@ -220,10 +221,10 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( takeBackItem && requireTriggerPressToReturn )
 			{
-                if (hand.isActive)
+				if ( hand.controller != null && hand.controller.GetHairTriggerDown() )
 				{
 					ItemPackage currentAttachedItemPackage = GetAttachedItemPackage( hand );
-                    if (currentAttachedItemPackage == itemPackage && hand.IsGrabEnding(currentAttachedItemPackage.gameObject))
+					if ( currentAttachedItemPackage == itemPackage )
 					{
 						TakeBackItem( hand );
 						return; // So that we don't pick up an ItemPackage the same frame that we return it
@@ -233,11 +234,9 @@ namespace Valve.VR.InteractionSystem
 
 			if ( requireTriggerPressToTake )
 			{
-                GrabTypes startingGrab = hand.GetGrabStarting();
-
-				if (startingGrab != GrabTypes.None)
+				if ( hand.controller != null && hand.controller.GetHairTriggerDown() )
 				{
-					SpawnAndAttachObject( hand, startingGrab);
+					SpawnAndAttachObject( hand );
 				}
 			}
 		}
@@ -248,7 +247,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( !justPickedUpItem && requireTriggerPressToTake && showTriggerHint )
 			{
-                hand.HideGrabHint();
+				ControllerButtonHints.HideTextHint( hand, Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger );
 			}
 
 			justPickedUpItem = false;
@@ -293,7 +292,7 @@ namespace Valve.VR.InteractionSystem
 
 
 		//-------------------------------------------------
-		private void SpawnAndAttachObject( Hand hand, GrabTypes grabType )
+		private void SpawnAndAttachObject( Hand hand )
 		{
 			if ( hand.otherHand != null )
 			{
@@ -307,7 +306,7 @@ namespace Valve.VR.InteractionSystem
 
 			if ( showTriggerHint )
 			{
-                hand.HideGrabHint();
+				ControllerButtonHints.HideTextHint( hand, Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger );
 			}
 
 			if ( itemPackage.otherHandItemPrefab != null )
@@ -338,13 +337,13 @@ namespace Valve.VR.InteractionSystem
 
 			spawnedItem = GameObject.Instantiate( itemPackage.itemPrefab );
 			spawnedItem.SetActive( true );
-			hand.AttachObject( spawnedItem, grabType, attachmentFlags );
+			hand.AttachObject( spawnedItem, attachmentFlags, attachmentPoint );
 
-			if ( ( itemPackage.otherHandItemPrefab != null ) && ( hand.otherHand.isActive ) )
+			if ( ( itemPackage.otherHandItemPrefab != null ) && ( hand.otherHand.controller != null ) )
 			{
 				GameObject otherHandObjectToAttach = GameObject.Instantiate( itemPackage.otherHandItemPrefab );
 				otherHandObjectToAttach.SetActive( true );
-				hand.otherHand.AttachObject( otherHandObjectToAttach, grabType, attachmentFlags );
+				hand.otherHand.AttachObject( otherHandObjectToAttach, attachmentFlags );
 			}
 
 			itemIsSpawned = true;

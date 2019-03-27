@@ -1,11 +1,11 @@
-﻿//#define VDM_SteamVR
+﻿#define VDM_SteamVR
 
 using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-//using Valve.VR;
+using Valve.VR;
 
 public class VdmDesktopManager : MonoBehaviour {
 
@@ -256,7 +256,7 @@ public class VdmDesktopManager : MonoBehaviour {
     void OnEnable()
     {
 #if VDM_SteamVR
-        SteamVR_Utils.Event.Listen("device_connected", OnDeviceConnected);
+        SteamVR_Events.DeviceConnected.Listen(OnDeviceConnected);
 #endif
 
         HackStart();
@@ -271,7 +271,7 @@ public class VdmDesktopManager : MonoBehaviour {
     void OnDisable()
     {
 #if VDM_SteamVR
-        SteamVR_Utils.Event.Remove("device_connected", OnDeviceConnected);
+        SteamVR_Events.DeviceConnected.Remove(OnDeviceConnected);
 #endif
 
         HackStop();
@@ -440,7 +440,7 @@ public class VdmDesktopManager : MonoBehaviour {
 #endif
 
 #if VDM_SteamVR
-    private void OnDeviceConnected(params object[] args)
+    private void OnDeviceConnected(int deviceId, bool isConnected)
     {
         RefreshControllers();        
     }

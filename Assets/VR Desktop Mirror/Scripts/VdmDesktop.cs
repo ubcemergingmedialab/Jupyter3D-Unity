@@ -1,11 +1,11 @@
-﻿//#define VDM_SteamVR
+﻿#define VDM_SteamVR
 
 using UnityEngine;
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Xml;
-//using Valve.VR;
+using Valve.VR;
 
 public class VdmDesktop : MonoBehaviour
 {
