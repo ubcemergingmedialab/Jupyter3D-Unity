@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate Vector3 GraphFunction(float u, float v, float t);//, Vector2 centre, float amplitude = 0, float speed = 0, float epsilon = 0.001f);
+public delegate Vector3 GraphFunctionControllerV2(float u, float v, float t);//, Vector2 centre, float amplitude = 0, float speed = 0, float epsilon = 0.001f);
 
 public enum GraphFunctions
 {

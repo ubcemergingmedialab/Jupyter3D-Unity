@@ -12,7 +12,7 @@ public class Graph : MonoBehaviour {
 
     public GraphFunctions function;
 
-    static GraphFunction[] functions = {
+    static GraphFunctionControllerV2[] functions = {
         GraphFunctionController.SineFunction, GraphFunctionController.WavePulse, GraphFunctionController.Sine1DFunction, GraphFunctionController.Sine2DFunction
     };
 
@@ -56,7 +56,7 @@ public class Graph : MonoBehaviour {
             t = Time.time - (beginTime - pauseTime);
             Debug.Log("Delta t: " + (t - t1Prev) + ", TCurrent: " + t + ", T1Prev: " + t1Prev + ", T2Prev: " + t2Prev);
             //Debug.Log("Delta t: " + (t - t1Prev) +  ", TCurrent: " + t + ", T1Prev: " + t1Prev + ", T2Prev: " + t2Prev);
-            GraphFunction f = functions[(int)function];
+            GraphFunctionControllerV2 f = functions[(int)function];
             float step = 2f / resolution;
             for (int i = 0, z = 0; z < resolution; z++)
             {
