@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
-    [Range(10, 100)]
+    [Range(1, 100)]
     public int frame = 1;
 
     //Public Properties
