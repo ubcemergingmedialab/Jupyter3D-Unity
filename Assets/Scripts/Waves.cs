@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Waves : MonoBehaviour
 {
+    [Range(10, 100)]
+    public int frame = 1;
+
     //Public Properties
     public int Dimension = 10;
     public float UVScale = 2f;
@@ -38,6 +41,7 @@ public class Waves : MonoBehaviour
         var localPos = Vector3.Scale((position - transform.position), scale);
 
         //get edge points
+        // 4 points to make a square 
         var p1 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Floor(localPos.z));
         var p2 = new Vector3(Mathf.Floor(localPos.x), 0, Mathf.Ceil(localPos.z));
         var p3 = new Vector3(Mathf.Ceil(localPos.x), 0, Mathf.Floor(localPos.z));
@@ -54,6 +58,7 @@ public class Waves : MonoBehaviour
         p4.z = Mathf.Clamp(p4.z, 0, Dimension);
 
         //get the max distance to one of the edges and take that to compute max - dist
+        // and the it will ignore the point the furthers, hence leaving three points, to know the point is in which mesh
         var max = Mathf.Max(Vector3.Distance(p1, localPos), Vector3.Distance(p2, localPos), Vector3.Distance(p3, localPos), Vector3.Distance(p4, localPos) + Mathf.Epsilon);
         var dist = (max - Vector3.Distance(p1, localPos))
                  + (max - Vector3.Distance(p2, localPos))
@@ -148,11 +153,15 @@ public class Waves : MonoBehaviour
                     if (Octaves[o].alternate)
                     {
                         var perl = Mathf.PerlinNoise((x * Octaves[o].scale.x) / Dimension, (z * Octaves[o].scale.y) / Dimension) * Mathf.PI * 2f;
-                        y += Mathf.Cos(perl + Octaves[o].speed.magnitude * Time.time) * Octaves[o].height;
+                        //y += Mathf.Cos(perl + Octaves[o].speed.magnitude * Time.time) * Octaves[o].height;
+                        y += Mathf.Cos(perl + Octaves[o].speed.magnitude * frame) * Octaves[o].height;
+
                     }
                     else
                     {
-                        var perl = Mathf.PerlinNoise((x * Octaves[o].scale.x + Time.time * Octaves[o].speed.x) / Dimension, (z * Octaves[o].scale.y + Time.time * Octaves[o].speed.y) / Dimension) - 0.5f;
+                        //var perl = Mathf.PerlinNoise((x * Octaves[o].scale.x + Time.time * Octaves[o].speed.x) / Dimension, (z * Octaves[o].scale.y + Time.time * Octaves[o].speed.y) / Dimension) - 0.5f;
+                        var perl = Mathf.PerlinNoise((x * Octaves[o].scale.x + frame * Octaves[o].speed.x) / Dimension, (z * Octaves[o].scale.y + frame * Octaves[o].speed.y) / Dimension) - 0.5f;
+
                         y += perl * Octaves[o].height;
                         // wave travel in 1D because of the time
                         // -0.5 in order to make the middle of amplitude on the 0 axis
