@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Implementation of the wave 
+
 public class GraphV2 : MonoBehaviour {
 
     public Transform pointPrefab;
@@ -12,7 +14,7 @@ public class GraphV2 : MonoBehaviour {
     public GraphFunctionName function;
 
     Transform[] points; //Array of all the points
-    static GraphFunction[] functions = { //Array of all the methods/functions to graph
+    static GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction,
         Cone, Ripple, RippleFading, RippleDynamic
     };
@@ -100,6 +102,10 @@ public class GraphV2 : MonoBehaviour {
         }
     }
 
+    // List of the implemented functions that can be seen in VR
+    // All of them return the y value as the x and z are defined and, only the y is used for different height in order to create different types of waves
+    // variable t is time, can be used for different frames of static functions; needs to be implements for the new wave function
+
     static float SineFunction(float x, float z, float t)        // float function because it needs to return a value 
     {
         return Mathf.Sin(pi * (x + t));
@@ -158,6 +164,8 @@ public class GraphV2 : MonoBehaviour {
         return y;
     }
 
+    // Mexican Hat
+    // Mathematical implementation
     static float RippleDynamic(float x, float z, float t)
     {
         float d = Mathf.Sqrt(x * x + z * z);

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// list of functions that are available in the Inpector of the GameObject
+
 public enum GraphFunctionName {
     Sine,
     Sine2DFunction1,
