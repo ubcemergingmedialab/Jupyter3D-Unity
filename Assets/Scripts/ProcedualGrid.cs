@@ -19,12 +19,30 @@ public class ProcedualGrid : MonoBehaviour {
     [Range(0, 1)] // discrete or continuous
     public int meshImplementation = 0;
 
+    
+
     // functions list 
     public GraphFunctionName function;
     static GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction,
         Cone, Ripple, RippleFading, RippleDynamic
     };
+
+    // Variables for the obove funstions 
+    private static float amplitude = 1;
+    private static float k = ((2f * pi) / 10); // chnage the wavelength
+    /*
+     * A wavelength of 1 produces no wave at all, instead the whole plane goes up and down uniformly. 
+     * Other small wavelengths produce ugly waves that can even move backwards.
+     * This problem is causes by the limited resolution of our plane mesh. Because vertices are spaces one unit apart, 
+     * it cannot deal with wavelengths of 2 or smaller. In general, you have to keep the wavelength greater than twice the edge 
+     * length of the triangles in your mesh. You don't want to cut it too close, because waves made up of two or three quads don't look good.
+     * Either use larger wavelengths, or increase the resolution of your mesh. The simplest approach is to just use another mesh. 
+     * Here is an alternative plane mesh that consists of 100×100 quads, instead of just 10×10. Each quad is still 1×1 unit, 
+     * so you'll have to zoom out and multiply the wave properties by 10 to get the same result as before.
+     * 
+     */
+
 
     const float pi = Mathf.PI;
 
@@ -166,35 +184,35 @@ public class ProcedualGrid : MonoBehaviour {
 
     static float SineFunction(float x, float z, float t)        // float function because it needs to return a value 
     {
-        return Mathf.Sin(pi * (x + t));
+        return amplitude * Mathf.Sin(k * (x + t));
     }
 
     static float MultiSineFunction(float x, float z, float t) // static becayse it is not associated with any specific object or vlaue instances
     {
-        float y = Mathf.Sin(pi * (x + t));
-        y += Mathf.Sin(2f * pi * (x + 2f * t)) / 2f;       // adding complexity 
+        float y = amplitude * Mathf.Sin(k * (x + t));
+        y += amplitude * Mathf.Sin(k * (x + 2f * t)) / 2f;       // adding complexity 
         y *= 2f / 3f;
         return y;
     }
 
     static float Sine2DFunction1(float x, float z, float t)
     {
-        return Mathf.Sin(pi * (x + z + t));
+        return amplitude * Mathf.Sin(k * (x + z + t));
     }
 
     static float Sine2DFunction2(float x, float z, float t)
     {
-        float y = Mathf.Sin(pi * (x + t));
-        y += Mathf.Sin(pi * (z + t));
+        float y = amplitude * Mathf.Sin(k * (x + t));
+        y += amplitude * Mathf.Sin(k * (z + t));
         y *= 0.5f;
         return y;
     }
 
     static float MultiSine2DFunction(float x, float z, float t)
     {
-        float y = 4f * Mathf.Sin(pi * (x + z + t * 0.5f));
-        y += Mathf.Sin(pi * (x + t));
-        y += Mathf.Sin(2f * pi * (z + 2f * t)) * 0.5f;
+        float y = amplitude * Mathf.Sin(pi * (x + z + t * 0.5f));
+        y += amplitude * Mathf.Sin(k * (x + t));
+        y += amplitude * Mathf.Sin(k * (z + 2f * t)) * 0.5f;
         y *= 1f / 5.5f;
         return y;
 
