@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSize: 1
-  gridOffset: {x: 0, y: 0, z: 0}
+  gridOffset: {x: 5, y: 0, z: 0}
   gridSize: 20
   meshImplementation: 1
-  function: 0
+  function: 4
 --- !u!23 &69000916
 MeshRenderer:
   m_ObjectHideFlags: 0
