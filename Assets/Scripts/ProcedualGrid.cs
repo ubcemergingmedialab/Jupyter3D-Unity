@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(MeshFilter), typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 
-public class ProcedualGrid : MonoBehaviour {
+public class ProcedualGrid : MonoBehaviour
+{
 
     // initializing lists and the mesh
     Mesh mesh;
     Vector3[] vertices;
     int[] triangles;
-    
+
     // grid setting
     public float cellSize = 1;
     public Vector3 gridOffset; // to change the initial x y z position pf the grid
@@ -19,6 +20,8 @@ public class ProcedualGrid : MonoBehaviour {
     [Range(0, 1)] // discrete or continuous
     public int meshImplementation = 0;
 
+
+
     // functions list 
     public GraphFunctionName function;
     static GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
@@ -26,36 +29,55 @@ public class ProcedualGrid : MonoBehaviour {
         Cone, Ripple, RippleFading, RippleDynamic
     };
 
+    // Variables for the obove funstions 
+    private static float amplitude = 1;
+    private static float k = ((2f * pi) / 10); // chnage the wavelength
+    /*
+     * A wavelength of 1 produces no wave at all, instead the whole plane goes up and down uniformly. 
+     * Other small wavelengths produce ugly waves that can even move backwards.
+     * This problem is causes by the limited resolution of our plane mesh. Because vertices are spaces one unit apart, 
+     * it cannot deal with wavelengths of 2 or smaller. In general, you have to keep the wavelength greater than twice the edge 
+     * length of the triangles in your mesh. You don't want to cut it too close, because waves made up of two or three quads don't look good.
+     * Either use larger wavelengths, or increase the resolution of your mesh. The simplest approach is to just use another mesh. 
+     * Here is an alternative plane mesh that consists of 100×100 quads, instead of just 10×10. Each quad is still 1×1 unit, 
+     * so you'll have to zoom out and multiply the wave properties by 10 to get the same result as before.
+     * 
+     */
+
+
     const float pi = Mathf.PI;
 
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
 
         mesh = GetComponent<MeshFilter>().mesh;
-		
-	}
-	
-	void Update () {
 
-        
+    }
 
-        if (meshImplementation  == 0)
+    void Update()
+    {
+
+
+
+        if (meshImplementation == 0)
         {
             MakeDiscreteProceduralGrid();
 
-        } else if (meshImplementation == 1)
+        }
+        else if (meshImplementation == 1)
         {
             MakeContiguousProceduralGrid();
         }
         UpdateMesh();
-		
-	}
+
+    }
 
     void MakeDiscreteProceduralGrid()
-        // Populating the informations, creating these arrays and filling it with the appropriate information 
+    // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int) function]; // Method delegation part using the array of functions defined above
+        GraphFunction f = functions[(int)function]; // Method delegation part using the array of functions defined above
         float sec = Time.time;        // Variable t refers to time 
 
 
@@ -74,14 +96,14 @@ public class ProcedualGrid : MonoBehaviour {
         {
             for (int z = 0; z < gridSize; z++) // iterating through the z dimension
             {
-                Vector3 cellOffSet = new Vector3 (x * cellSize, f(x,z,sec) , z * cellSize) ; // to not have all cell stack on top of each other, change one cell offset - using x and y two know exactly which cell we are at 
+                Vector3 cellOffSet = new Vector3(x * cellSize, f(x, z, sec), z * cellSize); // to not have all cell stack on top of each other, change one cell offset - using x and y two know exactly which cell we are at 
 
                 // populate the vertices and triangles arrays 
                 // addind the tracker to keep going thats is 0123 then 4567 then ... in order to iterate through all vertices of the grid
                 vertices[0 + v] = new Vector3(-vertexOffSet, 0, -vertexOffSet) + gridOffset + cellOffSet;
-                vertices[1 + v] = new Vector3(-vertexOffSet, 0, vertexOffSet)  + gridOffset + cellOffSet;
-                vertices[2 + v] = new Vector3(vertexOffSet, 0, -vertexOffSet)  + gridOffset + cellOffSet;
-                vertices[3 + v] = new Vector3(vertexOffSet, 0, vertexOffSet)   + gridOffset + cellOffSet;
+                vertices[1 + v] = new Vector3(-vertexOffSet, 0, vertexOffSet) + gridOffset + cellOffSet;
+                vertices[2 + v] = new Vector3(vertexOffSet, 0, -vertexOffSet) + gridOffset + cellOffSet;
+                vertices[3 + v] = new Vector3(vertexOffSet, 0, vertexOffSet) + gridOffset + cellOffSet;
 
                 // hard coding the pattern as it is always the same - two triangles, sharing two vertices, different order to keep it as clockwise
                 // associting the triangle with the current vertices - that is + v (tracker)
@@ -106,7 +128,7 @@ public class ProcedualGrid : MonoBehaviour {
         // set array sizes
         vertices = new Vector3[(gridSize + 1) * (gridSize + 1)];  // girdsize two dimentions, + plus one to have that final corner 
         triangles = new int[gridSize * gridSize * 6];     // 6 sides for 2 triangles to make a quad 
-        
+
         // set tracker intergers
         int v = 0;  // tracker for vertices 
         int t = 0;  // tracker for triangles
@@ -120,7 +142,7 @@ public class ProcedualGrid : MonoBehaviour {
         {
             for (int z = 0; z <= gridSize; z++) // iterating through the z dimension - less or equal because we added the + 1
             {
-                vertices[v] = new Vector3 ((x * cellSize) - vertexOffSet, f(x, z, sec), (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
+                vertices[v] = new Vector3((x * cellSize) - vertexOffSet, f(x, z, sec), (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
                 v++;
             }
         }
@@ -137,7 +159,7 @@ public class ProcedualGrid : MonoBehaviour {
                 // third, up one row of the first 
                 // fourth, up one row but into the right space of the first 
 
-                triangles[0 + t] = 0 + v; 
+                triangles[0 + t] = 0 + v;
                 triangles[1 + t] = triangles[4 + t] = 1 + v;
                 triangles[2 + t] = triangles[3 + t] = (gridSize + 1) + v; // same position as one but up one row
                 triangles[5 + t] = (gridSize + 1) + v + 1; // up right of the first 
@@ -149,7 +171,7 @@ public class ProcedualGrid : MonoBehaviour {
         }
     }
 
-    
+
 
     void UpdateMesh()
     {
@@ -166,35 +188,35 @@ public class ProcedualGrid : MonoBehaviour {
 
     static float SineFunction(float x, float z, float t)        // float function because it needs to return a value 
     {
-        return Mathf.Sin(pi * (x + t));
+        return amplitude * Mathf.Sin(k * (x + t));
     }
 
     static float MultiSineFunction(float x, float z, float t) // static becayse it is not associated with any specific object or vlaue instances
     {
-        float y = Mathf.Sin(pi * (x + t));
-        y += Mathf.Sin(2f * pi * (x + 2f * t)) / 2f;       // adding complexity 
+        float y = amplitude * Mathf.Sin(k * (x + t));
+        y += amplitude * Mathf.Sin(k * (x + 2f * t)) / 2f;       // adding complexity 
         y *= 2f / 3f;
         return y;
     }
 
     static float Sine2DFunction1(float x, float z, float t)
     {
-        return Mathf.Sin(pi * (x + z + t));
+        return amplitude * Mathf.Sin(k * (x + z + t));
     }
 
     static float Sine2DFunction2(float x, float z, float t)
     {
-        float y = Mathf.Sin(pi * (x + t));
-        y += Mathf.Sin(pi * (z + t));
+        float y = amplitude * Mathf.Sin(k * (x + t));
+        y += amplitude * Mathf.Sin(k * (z + t));
         y *= 0.5f;
         return y;
     }
 
     static float MultiSine2DFunction(float x, float z, float t)
     {
-        float y = 4f * Mathf.Sin(pi * (x + z + t * 0.5f));
-        y += Mathf.Sin(pi * (x + t));
-        y += Mathf.Sin(2f * pi * (z + 2f * t)) * 0.5f;
+        float y = amplitude * Mathf.Sin(pi * (x + z + t * 0.5f));
+        y += amplitude * Mathf.Sin(k * (x + t));
+        y += amplitude * Mathf.Sin(k * (z + 2f * t)) * 0.5f;
         y *= 1f / 5.5f;
         return y;
 
