@@ -23,8 +23,9 @@ public class Flag : MonoBehaviour {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+            // If raycast hits, spawn flag at hit point
             if (Physics.Raycast(ray, out hit))
-            {
+            { 
                 newPosition = hit.point;
                 transform.position = newPosition;
             }
