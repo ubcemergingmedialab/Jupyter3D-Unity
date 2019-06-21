@@ -23,15 +23,15 @@ public class ProcedualGrid : MonoBehaviour {
 
     // functions list 
     public GraphFunctionName function;
-    static GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
+    public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction,
         Cone, Ripple, RippleFading, RippleDynamic
     };
 
     // Variables for the obove funstions 
-    private static float amplitude = 1;
-    private static float k = ((2f * pi) / 10); // chnage the wavelength
-    private static float speed = 3;  // can be changed but used 5 for nice display 
+    public static float amplitude;
+    public static float k = ((2f * pi) / 10); // chnage the wavelength
+    public static float speed;  // can be changed but used 5 for nice display 
 
     /*
      * A wavelength of 1 produces no wave at all, instead the whole plane goes up and down uniformly. 
