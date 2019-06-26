@@ -11,7 +11,5 @@ public enum GraphFunctionName {
     MultiSine,
     MultiSine2DFunction,
     Cone,
-    Ripple,
-    RippleFading,
     RippleDynamic
 }

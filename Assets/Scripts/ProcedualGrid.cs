@@ -22,16 +22,19 @@ public class ProcedualGrid : MonoBehaviour {
     
 
     // functions list 
-    public GraphFunctionName function;
+    //public GraphFunctionName function;
+    public static float fun;
     public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction,
-        Cone, Ripple, RippleFading, RippleDynamic
+        Cone, RippleDynamic
     };
 
     // Variables for the obove funstions 
-    public static float amplitude;
-    public static float k = ((2f * pi) / 10); // chnage the wavelength
+    public static float amplitude = 1;
+    public static float k = ((2f * pi) / 15); // chnage the wavelength
     public static float speed;  // can be changed but used 5 for nice display 
+    public static float func = 0;
+
 
     /*
      * A wavelength of 1 produces no wave at all, instead the whole plane goes up and down uniformly. 
@@ -75,7 +78,7 @@ public class ProcedualGrid : MonoBehaviour {
     void MakeDiscreteProceduralGrid()
         // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int) function]; // Method delegation part using the array of functions defined above
+        GraphFunction f = functions[(int) func]; // Method delegation part using the array of functions defined above
         float sec = Time.time;        // Variable t refers to time 
 
 
@@ -120,7 +123,7 @@ public class ProcedualGrid : MonoBehaviour {
     void MakeContiguousProceduralGrid()
     // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int)function]; // Method delegation part using the array of functions defined above
+        GraphFunction f = functions[(int) func]; // Method delegation part using the array of functions defined above
         float sec = Time.time;        // Variable t refers to time 
 
         // set array sizes
@@ -234,20 +237,20 @@ public class ProcedualGrid : MonoBehaviour {
         return y;
     }
 
-    static float Ripple(float x, float z, float t)
-    {
-        float d = Mathf.Sqrt(x * x + z * z);
-        float y = Mathf.Sin(4f * pi * d);
-        return y;
-    }
+    //static float Ripple(float x, float z, float t)
+    //{
+    //    float d = Mathf.Sqrt(x * x + z * z);
+    //    float y = Mathf.Sin(4f * pi * d);
+    //    return y;
+    //}
 
-    static float RippleFading(float x, float z, float t)
-    {
-        float d = Mathf.Sqrt(x * x + z * z);
-        float y = Mathf.Sin(4f * pi * d);
-        y /= 1f + 10f * d;
-        return y;
-    }
+    //static float RippleFading(float x, float z, float t)
+    //{
+    //    float d = Mathf.Sqrt(x * x + z * z);
+    //    float y = Mathf.Sin(pi * (4f * 0.1f * k * d));
+    //    y /= 1f + .5f * d;
+    //    return y;
+    //}
 
     // Mexican Hat
     // Mathematical implementation
