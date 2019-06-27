@@ -23,15 +23,20 @@ public class ProcedualGrid : MonoBehaviour
 
 
     // functions list 
-    public GraphFunctionName function;
-    static GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
+    //public GraphFunctionName function;
+    public static float fun;
+    public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction,
-        Cone, Ripple, RippleFading, RippleDynamic
+        Cone, RippleDynamic
     };
 
     // Variables for the obove funstions 
-    private static float amplitude = 1;
-    private static float k = ((2f * pi) / 10); // chnage the wavelength
+    public static float amplitude = 1;
+    public static float k = ((2f * pi) / 15); // chnage the wavelength
+    public static float speed;  // can be changed but used 5 for nice display 
+    public static float func = 0;
+
+
     /*
      * A wavelength of 1 produces no wave at all, instead the whole plane goes up and down uniformly. 
      * Other small wavelengths produce ugly waves that can even move backwards.
@@ -77,7 +82,7 @@ public class ProcedualGrid : MonoBehaviour
     void MakeDiscreteProceduralGrid()
     // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int)function]; // Method delegation part using the array of functions defined above
+        GraphFunction f = functions[(int)func]; // Method delegation part using the array of functions defined above
         float sec = Time.time;        // Variable t refers to time 
 
 
@@ -122,7 +127,7 @@ public class ProcedualGrid : MonoBehaviour
     void MakeContiguousProceduralGrid()
     // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int)function]; // Method delegation part using the array of functions defined above
+        GraphFunction f = functions[(int)func]; // Method delegation part using the array of functions defined above
         float sec = Time.time;        // Variable t refers to time 
 
         // set array sizes
@@ -138,11 +143,18 @@ public class ProcedualGrid : MonoBehaviour
 
 
         // Setting the vertices 
-        for (int x = 0; x <= gridSize; x++) // iterating through the x dimension - less or equal because we added the + 1
+        float xmin = -10;
+        float xmax = 10;
+        float zmin = -10;
+        float zmax = 10;
+        float x, z;
+        for (int i = 0; i <= gridSize; i++) // iterating through the x dimension - less or equal because we added the + 1
         {
-            for (int z = 0; z <= gridSize; z++) // iterating through the z dimension - less or equal because we added the + 1
+            x = xmin + (xmax - xmin) * i / (float)gridSize;
+            for (int j = 0; j <= gridSize; j++) // iterating through the z dimension - less or equal because we added the + 1
             {
-                vertices[v] = new Vector3((x * cellSize) - vertexOffSet, f(x, z, sec), (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
+                z = zmin + (zmax - zmin) * j / (float)gridSize;
+                vertices[v] = new Vector3((x * cellSize) - vertexOffSet, f(x, z, sec) - vertexOffSet, (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
                 v++;
             }
         }
@@ -150,9 +162,9 @@ public class ProcedualGrid : MonoBehaviour
         v = 0; // reset vertex tracker, as it got incresed in the previous for loop
 
         // Setting each cell's triangles
-        for (int x = 0; x < gridSize; x++) // iterating through the x dimension - no need the equal side cause no + 1
+        for (int i = 0; i < gridSize; i++) // iterating through the x dimension - no need the equal side cause no + 1
         {
-            for (int z = 0; z < gridSize; z++) // iterating through the z dimension - no need the equal side cause no + 1
+            for (int j = 0; j < gridSize; j++) // iterating through the z dimension - no need the equal side cause no + 1
             {
                 // first triangle, using the origin point 
                 // second, to the right of the first
@@ -188,35 +200,35 @@ public class ProcedualGrid : MonoBehaviour
 
     static float SineFunction(float x, float z, float t)        // float function because it needs to return a value 
     {
-        return amplitude * Mathf.Sin(k * (x + t));
+        return amplitude * Mathf.Sin(k * (x + t * speed));
     }
 
     static float MultiSineFunction(float x, float z, float t) // static becayse it is not associated with any specific object or vlaue instances
     {
-        float y = amplitude * Mathf.Sin(k * (x + t));
-        y += amplitude * Mathf.Sin(k * (x + 2f * t)) / 2f;       // adding complexity 
+        float y = amplitude * Mathf.Sin(k * (x + t * speed));
+        y += amplitude * Mathf.Sin(k * (x + 2f * t * speed)) / 2f;       // adding complexity 
         y *= 2f / 3f;
         return y;
     }
 
     static float Sine2DFunction1(float x, float z, float t)
     {
-        return amplitude * Mathf.Sin(k * (x + z + t));
+        return amplitude * Mathf.Sin(k * (x + z + t * speed));
     }
 
     static float Sine2DFunction2(float x, float z, float t)
     {
-        float y = amplitude * Mathf.Sin(k * (x + t));
-        y += amplitude * Mathf.Sin(k * (z + t));
+        float y = amplitude * Mathf.Sin(k * (x + t * speed));
+        y += amplitude * Mathf.Sin(k * (z + t * speed));
         y *= 0.5f;
         return y;
     }
 
     static float MultiSine2DFunction(float x, float z, float t)
     {
-        float y = amplitude * Mathf.Sin(pi * (x + z + t * 0.5f));
-        y += amplitude * Mathf.Sin(k * (x + t));
-        y += amplitude * Mathf.Sin(k * (z + 2f * t)) * 0.5f;
+        float y = amplitude * Mathf.Sin(k * (x + z + t * 0.5f * speed));
+        y += amplitude * Mathf.Sin(k * (x + t * speed));
+        y += amplitude * Mathf.Sin(k * (z + 2f * t * speed)) * 0.5f;
         y *= 1f / 5.5f;
         return y;
 
@@ -229,28 +241,30 @@ public class ProcedualGrid : MonoBehaviour
         return y;
     }
 
-    static float Ripple(float x, float z, float t)
-    {
-        float d = Mathf.Sqrt(x * x + z * z);
-        float y = Mathf.Sin(4f * pi * d);
-        return y;
-    }
+    //static float Ripple(float x, float z, float t)
+    //{
+    //    float d = Mathf.Sqrt(x * x + z * z);
+    //    float y = Mathf.Sin(4f * pi * d);
+    //    return y;
+    //}
 
-    static float RippleFading(float x, float z, float t)
-    {
-        float d = Mathf.Sqrt(x * x + z * z);
-        float y = Mathf.Sin(4f * pi * d);
-        y /= 1f + 10f * d;
-        return y;
-    }
+    //static float RippleFading(float x, float z, float t)
+    //{
+    //    float d = Mathf.Sqrt(x * x + z * z);
+    //    float y = Mathf.Sin(pi * (4f * 0.1f * k * d));
+    //    y /= 1f + .5f * d;
+    //    return y;
+    //}
 
     // Mexican Hat
     // Mathematical implementation
     static float RippleDynamic(float x, float z, float t)
     {
+        // x -= 10;
+        // z -= 10;
         float d = Mathf.Sqrt(x * x + z * z);
-        float y = Mathf.Sin(pi * (4f * d - t));
-        y /= 1f + 10f * d;
+        float y = Mathf.Sin(pi * (4f * 0.1f * k * d - t * speed));
+        y /= 1f + .5f * d;
         return y;
     }
 }
