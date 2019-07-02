@@ -61,11 +61,11 @@ public class ControllerInput : MonoBehaviour
 
         float joyStickY = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY);
 
-        if (joyStickY > 0.50f)
+        if (joyStickY > 0.90f)
         {
             ProcedualGrid.amplitude += BaseAmp;
         }
-        if (joyStickY < -0.50f)
+        if (joyStickY < -0.90f)
         {
             ProcedualGrid.amplitude -= BaseAmp;
         }
