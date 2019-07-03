@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,12 @@ public class ProcedualGrid : MonoBehaviour
     // grid setting
     public float cellSize = 1;
     public Vector3 gridOffset; // to change the initial x y z position pf the grid
+
+    internal static T AddComponent<T>()
+    {
+        throw new NotImplementedException();
+    }
+
     public int gridSize; // Square grid, else create two variables 
 
     [Range(0, 1)] // discrete or continuous
