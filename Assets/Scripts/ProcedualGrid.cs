@@ -1,33 +1,26 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
+[RequireComponent (typeof(MeshFilter), typeof(MeshRenderer))]
 
-public class ProcedualGrid : MonoBehaviour
-{
+public class ProcedualGrid : MonoBehaviour {
 
     // initializing lists and the mesh
     Mesh mesh;
     Vector3[] vertices;
     int[] triangles;
-
+    
     // grid setting
     public float cellSize = 1;
     public Vector3 gridOffset; // to change the initial x y z position pf the grid
-
-    internal static T AddComponent<T>()
-    {
-        throw new NotImplementedException();
-    }
-
     public int gridSize; // Square grid, else create two variables 
-
+    public GraphFunction current_function;  //gets the current function to pass to TextEquation.cs
+    
     [Range(0, 1)] // discrete or continuous
     public int meshImplementation = 0;
 
-
+    
 
     // functions list 
     //public GraphFunctionName function;
@@ -61,35 +54,33 @@ public class ProcedualGrid : MonoBehaviour
 
 
     // Use this for initialization
-    void Awake()
-    {
+    void Awake () {
 
         mesh = GetComponent<MeshFilter>().mesh;
+		
+	}
+	
+	void Update () {
 
-    }
+        
 
-    void Update()
-    {
-
-
-
-        if (meshImplementation == 0)
+        if (meshImplementation  == 0)
         {
             MakeDiscreteProceduralGrid();
 
-        }
-        else if (meshImplementation == 1)
+        } else if (meshImplementation == 1)
         {
             MakeContiguousProceduralGrid();
         }
         UpdateMesh();
-
-    }
+		
+	}
 
     void MakeDiscreteProceduralGrid()
-    // Populating the informations, creating these arrays and filling it with the appropriate information 
+        // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int)func]; // Method delegation part using the array of functions defined above
+        GraphFunction f = functions[(int) func]; // Method delegation part using the array of functions defined above
+        current_function = f; //passes f to the current function
         float sec = Time.time;        // Variable t refers to time 
 
 
@@ -108,14 +99,14 @@ public class ProcedualGrid : MonoBehaviour
         {
             for (int z = 0; z < gridSize; z++) // iterating through the z dimension
             {
-                Vector3 cellOffSet = new Vector3(x * cellSize, f(x, z, sec), z * cellSize); // to not have all cell stack on top of each other, change one cell offset - using x and y two know exactly which cell we are at 
+                Vector3 cellOffSet = new Vector3 (x * cellSize, f(x,z,sec) , z * cellSize) ; // to not have all cell stack on top of each other, change one cell offset - using x and y two know exactly which cell we are at 
 
                 // populate the vertices and triangles arrays 
                 // addind the tracker to keep going thats is 0123 then 4567 then ... in order to iterate through all vertices of the grid
                 vertices[0 + v] = new Vector3(-vertexOffSet, 0, -vertexOffSet) + gridOffset + cellOffSet;
-                vertices[1 + v] = new Vector3(-vertexOffSet, 0, vertexOffSet) + gridOffset + cellOffSet;
-                vertices[2 + v] = new Vector3(vertexOffSet, 0, -vertexOffSet) + gridOffset + cellOffSet;
-                vertices[3 + v] = new Vector3(vertexOffSet, 0, vertexOffSet) + gridOffset + cellOffSet;
+                vertices[1 + v] = new Vector3(-vertexOffSet, 0, vertexOffSet)  + gridOffset + cellOffSet;
+                vertices[2 + v] = new Vector3(vertexOffSet, 0, -vertexOffSet)  + gridOffset + cellOffSet;
+                vertices[3 + v] = new Vector3(vertexOffSet, 0, vertexOffSet)   + gridOffset + cellOffSet;
 
                 // hard coding the pattern as it is always the same - two triangles, sharing two vertices, different order to keep it as clockwise
                 // associting the triangle with the current vertices - that is + v (tracker)
@@ -134,13 +125,14 @@ public class ProcedualGrid : MonoBehaviour
     void MakeContiguousProceduralGrid()
     // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int)func]; // Method delegation part using the array of functions defined above
+        GraphFunction f = functions[(int) func]; // Method delegation part using the array of functions defined above
+        current_function = f; //passes f to the current function
         float sec = Time.time;        // Variable t refers to time 
 
         // set array sizes
         vertices = new Vector3[(gridSize + 1) * (gridSize + 1)];  // girdsize two dimentions, + plus one to have that final corner 
         triangles = new int[gridSize * gridSize * 6];     // 6 sides for 2 triangles to make a quad 
-
+        
         // set tracker intergers
         int v = 0;  // tracker for vertices 
         int t = 0;  // tracker for triangles
@@ -160,8 +152,8 @@ public class ProcedualGrid : MonoBehaviour
             x = xmin + (xmax - xmin) * i / (float)gridSize;
             for (int j = 0; j <= gridSize; j++) // iterating through the z dimension - less or equal because we added the + 1
             {
-                z = zmin + (zmax - zmin) * j / (float)gridSize;
-                vertices[v] = new Vector3((x * cellSize) - vertexOffSet, f(x, z, sec) - vertexOffSet, (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
+                z = zmin + (zmax - zmin)*j / (float)gridSize;
+                vertices[v] = new Vector3 ((x * cellSize) - vertexOffSet, f(x, z, sec) - vertexOffSet, (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
                 v++;
             }
         }
@@ -178,7 +170,7 @@ public class ProcedualGrid : MonoBehaviour
                 // third, up one row of the first 
                 // fourth, up one row but into the right space of the first 
 
-                triangles[0 + t] = 0 + v;
+                triangles[0 + t] = 0 + v; 
                 triangles[1 + t] = triangles[4 + t] = 1 + v;
                 triangles[2 + t] = triangles[3 + t] = (gridSize + 1) + v; // same position as one but up one row
                 triangles[5 + t] = (gridSize + 1) + v + 1; // up right of the first 
@@ -190,7 +182,7 @@ public class ProcedualGrid : MonoBehaviour
         }
     }
 
-
+    
 
     void UpdateMesh()
     {
@@ -267,10 +259,10 @@ public class ProcedualGrid : MonoBehaviour
     // Mathematical implementation
     static float RippleDynamic(float x, float z, float t)
     {
-        // x -= 10;
-        // z -= 10;
+       // x -= 10;
+       // z -= 10;
         float d = Mathf.Sqrt(x * x + z * z);
-        float y = Mathf.Sin(pi * (4f * 0.1f * k * d - t * speed));
+        float y = Mathf.Sin(pi * (4f * 0.1f*k*d - t * speed));
         y /= 1f + .5f * d;
         return y;
     }
