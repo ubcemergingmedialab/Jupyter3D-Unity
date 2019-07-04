@@ -5,11 +5,16 @@ using HTC.UnityPlugin.Vive;
 
 public class ControllerInput : MonoBehaviour
 {
+    CharacterController characterController;
 
     const float pi = Mathf.PI;
 
     public float BaseSpeed = 10f;
     public float BaseAmp = 0;
+    public float MoveSpeed = 6.0f;
+
+    private Vector3 moveDirection = Vector3.zero;
+
 
 
     //public float AmpIncrease = 0.25f;
@@ -26,6 +31,10 @@ public class ControllerInput : MonoBehaviour
     {
 
     }
+    private void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+    }
 
     private void Update()
     {
@@ -33,7 +42,7 @@ public class ControllerInput : MonoBehaviour
         joystickYFunctionality();
         gripFunctionality();
         buttonFunctionality();
-
+        //joystickXYFunctionality()
 
     }
 
@@ -76,7 +85,7 @@ public class ControllerInput : MonoBehaviour
     {
         if (ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Grip))
         {
-            ProcedualGrid.k *= 1.5f;
+            ProcedualGrid.k *= 2.0f;
 
         }
 
@@ -101,4 +110,17 @@ public class ControllerInput : MonoBehaviour
         }
 
     }
+    
+    private void joystickXYFunctionality()
+    {
+
+        float joyStickY = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickY);
+        float joyStickX = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickX);
+
+        moveDirection = new Vector3(Input.GetAxis("Horizontal") , 0.0f, Input.GetAxis("Horizontal"));
+
+        // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
+        //x and y of joystick moves the x and z of the proceduralgrid gameobject
+    }
+
 }
