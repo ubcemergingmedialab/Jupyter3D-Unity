@@ -28,6 +28,7 @@ public class Flag : MonoBehaviour {
             { 
                 newPosition = hit.point;
                 transform.position = newPosition;
+                //good luck!
             }
         }
 
