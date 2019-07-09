@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HTC.UnityPlugin.Vive;
 
+//tester
 public class ControllerInput : MonoBehaviour
 {
     CharacterController characterController;
