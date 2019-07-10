@@ -12,71 +12,44 @@ using HTC.UnityPlugin.Vive;
 
 public class Flag : MonoBehaviour
 {
-
-
+    public Transform RightController;
+    public Transform Aimcircle;
 
     Vector3 newPosition;
 
+    public GameObject flag;
 
 
     // Use this for initialization
 
     void Start()
     {
-
         newPosition = transform.position;
-
-        GetComponent<Renderer>().enabled = false;
-
+        GetComponent<Renderer>().enabled = true;
     }
 
 
-
     // Update is called once per frame
-
     void Update()
     {
-
-
-
-        if (Input.GetMouseButtonDown(0))
-
+        // Checks if the grip button is pressed on the right controller
+        if (ViveInput.GetPressDownEx(HandRole.RightHand, ControllerButton.Grip))
         {
-
+            // Renders the flag object
             GetComponent<Renderer>().enabled = true;
 
             RaycastHit hit;
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-
+            var ray = new Ray();
+            ray.origin = RightController.position;
+            ray.direction = RightController.forward;
 
             // If raycast hits, spawn flag at hit point
-
             if (Physics.Raycast(ray, out hit))
-
             {
-
                 newPosition = hit.point;
-
-                transform.position = newPosition;
-
-                //good luck!
-
+                flag.transform.position = newPosition;
             }
-
         }
-
-
-
-        if (Input.GetMouseButtonDown(1))
-
-        {
-
-            GetComponent<Renderer>().enabled = false;
-
-        }
-
     }
-
 }
