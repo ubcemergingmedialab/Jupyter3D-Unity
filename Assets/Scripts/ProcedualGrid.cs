@@ -33,8 +33,7 @@ public class ProcedualGrid : MonoBehaviour
     //public GraphFunctionName function;
     public static float fun;
     public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
-        SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction,
-        Cone, RippleDynamic
+        SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction, RippleDynamic
     };
 
     // Variables for the obove funstions 
@@ -204,7 +203,6 @@ public class ProcedualGrid : MonoBehaviour
 
 
 
-
     static float SineFunction(float x, float z, float t)        // float function because it needs to return a value 
     {
         return amplitude * Mathf.Sin(k * (x + t * speed));
@@ -241,27 +239,6 @@ public class ProcedualGrid : MonoBehaviour
 
     }
 
-    static float Cone(float x, float z, float t)
-    {
-        float d = Mathf.Sqrt(x * x + z * z);
-        float y = d;
-        return y;
-    }
-
-    //static float Ripple(float x, float z, float t)
-    //{
-    //    float d = Mathf.Sqrt(x * x + z * z);
-    //    float y = Mathf.Sin(4f * pi * d);
-    //    return y;
-    //}
-
-    //static float RippleFading(float x, float z, float t)
-    //{
-    //    float d = Mathf.Sqrt(x * x + z * z);
-    //    float y = Mathf.Sin(pi * (4f * 0.1f * k * d));
-    //    y /= 1f + .5f * d;
-    //    return y;
-    //}
 
     // Mexican Hat
     // Mathematical implementation
