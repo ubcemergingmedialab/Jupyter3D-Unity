@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using HTC.UnityPlugin.Vive;
+using UnityEngine.SceneManagement;
 
 public class ControllerInput : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class ControllerInput : MonoBehaviour
 
     public float BaseSpeed = 10f;
     public float BaseAmp = 0;
-    public float MoveSpeed = 6.0f;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -42,6 +42,7 @@ public class ControllerInput : MonoBehaviour
         joystickYFunctionality();
         gripFunctionality();
         buttonFunctionality();
+        restartScene();
         //joystickXYFunctionality()
 
     }
@@ -121,6 +122,16 @@ public class ControllerInput : MonoBehaviour
 
         // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
         //x and y of joystick moves the x and z of the proceduralgrid gameobject
+    }
+
+    private void restartScene()
+    {
+        if (ViveInput.GetPressDown(HandRole.RightHand, ControllerButton.Pad))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ProcedualGrid.amplitude = 1;
+            ProcedualGrid.k = ((2f * pi) / 15);
+        }
     }
 
 }
