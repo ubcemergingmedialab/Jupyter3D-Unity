@@ -47,13 +47,10 @@ public class TextEquation : MonoBehaviour
         {
             displayText = "MultiSine2DFunction";
         }
+       
         else if (ProcedualGrid.func == 5)
         {
-            displayText = "Cone";
-        }
-        else if (ProcedualGrid.func == 6)
-        {
-            displayText = "RippleDynamic";
+            displayText = "MexicanHat";
         }
 
         testMesh = GetComponent<TextMesh>();

@@ -25,15 +25,14 @@ public class ProcedualGrid : MonoBehaviour
     public int gridSize; // Square grid, else create two variables 
 
     [Range(0, 1)] // discrete or continuous
-    public int meshImplementation = 0;
+    public int meshImplementation = 1;
 
 
 
     // functions list 
     //public GraphFunctionName function;
-    public static float fun;
     public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
-        SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction, RippleDynamic
+        SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction, MexicanHat
     };
 
     // Variables for the obove funstions 
@@ -69,9 +68,7 @@ public class ProcedualGrid : MonoBehaviour
 
     void Update()
     {
-
-
-
+       
         if (meshImplementation == 0)
         {
             MakeDiscreteProceduralGrid();
@@ -81,6 +78,7 @@ public class ProcedualGrid : MonoBehaviour
         {
             MakeContiguousProceduralGrid();
         }
+
         UpdateMesh();
 
     }
@@ -242,7 +240,7 @@ public class ProcedualGrid : MonoBehaviour
 
     // Mexican Hat
     // Mathematical implementation
-    static float RippleDynamic(float x, float z, float t)
+    static float MexicanHat(float x, float z, float t)
     {
         // x -= 10;
         // z -= 10;
