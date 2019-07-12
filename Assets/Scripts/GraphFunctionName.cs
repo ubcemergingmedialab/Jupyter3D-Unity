@@ -6,10 +6,10 @@ using UnityEngine;
 
 public enum GraphFunctionName
 {
-    Sine,
-    Sine2DFunction1,
-    Sine2DFunction2,
-    MultiSine,
-    MultiSine2DFunction,
-    MexicanHat
+    Sine = 0,
+    Sine2DFunction1 = 1,
+    Sine2DFunction2 = 2,
+    MultiSine = 3,
+    MultiSine2DFunction = 4,
+    MexicanHat = 5
 }

@@ -97,14 +97,14 @@ public class ControllerInput : MonoBehaviour
         if (ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Pad))
         {
 
-            if (ProcedualGrid.func < 5)
+            if (ProcedualGrid.funcVR < 5)
             {
-                ProcedualGrid.func += 1;
-
+                ProcedualGrid.funcVR += 1;
+                //ProcedualGrid.function = ProcedualGrid.func;
             }
             else
             {
-                ProcedualGrid.func = 0;
+                ProcedualGrid.funcVR = 0;
 
             }
 

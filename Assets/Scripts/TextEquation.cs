@@ -27,28 +27,28 @@ public class TextEquation : MonoBehaviour
 
 
 
-        if (ProcedualGrid.func == 0)
+        if (ProcedualGrid.funcVR == 0)
         {
             displayText = "SineFunction";
         }
-        else if (ProcedualGrid.func == 1)
+        else if (ProcedualGrid.funcVR == 1)
         {
             displayText = "Sine2DFunction1";
         }
-        else if (ProcedualGrid.func == 2)
+        else if (ProcedualGrid.funcVR == 2)
         {
             displayText = "Sine2DFunction2";
         }
-        else if (ProcedualGrid.func == 3)
+        else if (ProcedualGrid.funcVR == 3)
         {
             displayText = "MultiSineFunction";
         }
-        else if (ProcedualGrid.func == 4)
+        else if (ProcedualGrid.funcVR == 4)
         {
             displayText = "MultiSine2DFunction";
         }
        
-        else if (ProcedualGrid.func == 5)
+        else if (ProcedualGrid.funcVR == 5)
         {
             displayText = "MexicanHat";
         }
