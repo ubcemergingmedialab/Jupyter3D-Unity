@@ -31,6 +31,7 @@ public class ProcedualGrid : MonoBehaviour
 
     // functions list 
     //public GraphFunctionName function;
+    public GraphFunctionName function;
     public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction, MexicanHat
     };
@@ -131,7 +132,9 @@ public class ProcedualGrid : MonoBehaviour
     void MakeContiguousProceduralGrid()
     // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        GraphFunction f = functions[(int)func]; // Method delegation part using the array of functions defined above
+        
+        GraphFunction f = functions[(int)function];
+        f = functions[(int)func]; // Method delegation part using the array of functions defined above
         float sec = Time.time;        // Variable t refers to time 
 
         // set array sizes
