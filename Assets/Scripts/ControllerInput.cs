@@ -49,20 +49,14 @@ public class ControllerInput : MonoBehaviour
 
     private void triggerFunctionality()
     {
-        float trigger = (ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.Trigger));
+        bool trigger = (ViveInput.GetPressEx(HandRole.LeftHand, ControllerButton.Trigger));
 
 
-        if (trigger >= 0.5f && trigger > 0.0f)
+        if (trigger){
+            ProcedualGrid.play = true;
+        } else
         {
-            ProcedualGrid.speed = BaseSpeed;
-        }
-        if (trigger < 0.5f && trigger > 0.0f)
-        {
-            ProcedualGrid.speed = BaseSpeed * 0.5f;
-        }
-        if (trigger == 0.0f)
-        {
-            ProcedualGrid.speed = 0;
+            ProcedualGrid.play = false;
         }
     }
 
