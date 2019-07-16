@@ -362,7 +362,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 608200855}
-  m_Text: Jupyter 3d
+  m_Text: Jupyter 3D
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

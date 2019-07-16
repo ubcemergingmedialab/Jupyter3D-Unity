@@ -29,28 +29,27 @@ public class TextEquation : MonoBehaviour
 
         if (ProcedualGrid.funcVR == 0)
         {
-            displayText = "SineFunction";
+            displayText = "Ocean Wave 1";
         }
         else if (ProcedualGrid.funcVR == 1)
         {
-            displayText = "Sine2DFunction1";
+            displayText = "Ocean Wave 2";
         }
         else if (ProcedualGrid.funcVR == 2)
         {
-            displayText = "Sine2DFunction2";
+            displayText = "Drum Wave";
         }
         else if (ProcedualGrid.funcVR == 3)
         {
-            displayText = "MultiSineFunction";
+            displayText = "Multi Sine 1";
         }
         else if (ProcedualGrid.funcVR == 4)
         {
-            displayText = "MultiSine2DFunction";
+            displayText = "Multi Sine 2";
         }
-       
         else if (ProcedualGrid.funcVR == 5)
         {
-            displayText = "MexicanHat";
+            displayText = "Mexican Hat";
         }
 
         testMesh = GetComponent<TextMesh>();
