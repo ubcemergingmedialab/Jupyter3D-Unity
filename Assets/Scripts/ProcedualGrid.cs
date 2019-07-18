@@ -32,7 +32,7 @@ public class ProcedualGrid : MonoBehaviour
 
     // Variables for the obove funstions 
     public static float amplitude = 1;
-    public static float k = ((2f * pi) / 15); // chnage the wavelength
+    public static float k = ((2f * pi) / 25); // chnage the wavelength
     public static float speed = 10;  // can be changed but used 5 for nice display 
     
     public static float funcVR = 0;

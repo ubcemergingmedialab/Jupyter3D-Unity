@@ -52,7 +52,7 @@ public class ControllerInput : MonoBehaviour
     private void triggerFunctionality()
     {
         
-        if ((ViveInput.GetPressEx(HandRole.LeftHand, ControllerButton.Trigger))){
+        if (ViveInput.GetPressEx(HandRole.LeftHand, ControllerButton.Trigger)){
             ProcedualGrid.play = true;
         } else
         {
@@ -63,13 +63,13 @@ public class ControllerInput : MonoBehaviour
     private void joystickYFunctionality()
     {
 
-        float joyStickY = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY);
+        float joyStickYLEFT = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY);
 
-        if (joyStickY > 0.5f)
+        if (joyStickYLEFT > 0.5f)
         {
             ProcedualGrid.amplitude += BaseAmpl;
         }
-        if (joyStickY < -0.5f)
+        if (joyStickYLEFT < -0.5f)
         {
             ProcedualGrid.amplitude -= BaseAmpl;
         }
@@ -78,7 +78,7 @@ public class ControllerInput : MonoBehaviour
 
     private void gripFunctionality()
     {
-        if (ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Grip))
+        if ((ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Grip)) && (ProcedualGrid.k <= (((2f * pi) / 25))*2 ))
         {
             ProcedualGrid.k *= BaseK;
 
