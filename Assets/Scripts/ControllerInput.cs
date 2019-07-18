@@ -11,7 +11,9 @@ public class ControllerInput : MonoBehaviour
     const float pi = Mathf.PI;
 
     public float BaseSpeed = 10f;
-    public float BaseAmp = 0;
+    public float BaseAmpl = 0.02f;
+    public float BaseK = 2.0f;
+
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -49,20 +51,12 @@ public class ControllerInput : MonoBehaviour
 
     private void triggerFunctionality()
     {
-        float trigger = (ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.Trigger));
-
-
-        if (trigger >= 0.5f && trigger > 0.0f)
+        
+        if ((ViveInput.GetPressEx(HandRole.LeftHand, ControllerButton.Trigger))){
+            ProcedualGrid.play = true;
+        } else
         {
-            ProcedualGrid.speed = BaseSpeed;
-        }
-        if (trigger < 0.5f && trigger > 0.0f)
-        {
-            ProcedualGrid.speed = BaseSpeed * 0.5f;
-        }
-        if (trigger == 0.0f)
-        {
-            ProcedualGrid.speed = 0;
+            ProcedualGrid.play = false;
         }
     }
 
@@ -71,13 +65,13 @@ public class ControllerInput : MonoBehaviour
 
         float joyStickY = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY);
 
-        if (joyStickY > 0.90f)
+        if (joyStickY > 0.5f)
         {
-            ProcedualGrid.amplitude += BaseAmp;
+            ProcedualGrid.amplitude += BaseAmpl;
         }
-        if (joyStickY < -0.90f)
+        if (joyStickY < -0.5f)
         {
-            ProcedualGrid.amplitude -= BaseAmp;
+            ProcedualGrid.amplitude -= BaseAmpl;
         }
         // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
     }
@@ -86,7 +80,7 @@ public class ControllerInput : MonoBehaviour
     {
         if (ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Grip))
         {
-            ProcedualGrid.k *= 2.0f;
+            ProcedualGrid.k *= BaseK;
 
         }
 
@@ -114,14 +108,12 @@ public class ControllerInput : MonoBehaviour
     
     private void joystickXYFunctionality()
     {
-
+        
         float joyStickY = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickY);
         float joyStickX = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickX);
 
-        moveDirection = new Vector3(Input.GetAxis("Horizontal") , 0.0f, Input.GetAxis("Horizontal"));
-
-        // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
-        //x and y of joystick moves the x and z of the proceduralgrid gameobject
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Horizontal"));
+        
     }
 
     private void restartScene()

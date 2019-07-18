@@ -17,8 +17,9 @@ public class ProcedualGrid : MonoBehaviour
     public float cellSize = 1;
     public Vector3 gridOffset; // to change the initial x y z position pf the grid
 
+    public static bool play = false;
+    private float time;
     
-
     public int gridSize; // Square grid, else create two variables 
 
 
@@ -32,7 +33,7 @@ public class ProcedualGrid : MonoBehaviour
     // Variables for the obove funstions 
     public static float amplitude = 1;
     public static float k = ((2f * pi) / 15); // chnage the wavelength
-    public static float speed;  // can be changed but used 5 for nice display 
+    public static float speed = 10;  // can be changed but used 5 for nice display 
     
     public static float funcVR = 0;
 
@@ -66,9 +67,15 @@ public class ProcedualGrid : MonoBehaviour
 
     void Update()
     {
+        if (play)
+        {
+            time++;
+        }
+
         MakeContiguousProceduralGrid();
         UpdateMesh();
-
+       
+        
     }
 
 
@@ -83,7 +90,7 @@ public class ProcedualGrid : MonoBehaviour
         }
 
         GraphFunction f = functions[(int)funcVR]; // Method delegation part using the array of functions defined above
-        float sec = Time.time;        // Variable t refers to time 
+        // float sec = Time.time;        // Variable t refers to time 
 
         // set array sizes
         vertices = new Vector3[(gridSize + 1) * (gridSize + 1)];  // girdsize two dimentions, + plus one to have that final corner 
@@ -109,7 +116,7 @@ public class ProcedualGrid : MonoBehaviour
             for (int j = 0; j <= gridSize; j++) // iterating through the z dimension - less or equal because we added the + 1
             {
                 z = zmin + (zmax - zmin) * j / (float)gridSize;
-                vertices[v] = new Vector3((x * cellSize) - vertexOffSet, f(x, z, sec) - vertexOffSet, (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
+                vertices[v] = new Vector3((x * cellSize) - vertexOffSet, f(x, z, time/120) - vertexOffSet, (z * cellSize) - vertexOffSet);  // starting off at half of the cell and shifting it 
                 v++;
             }
         }
