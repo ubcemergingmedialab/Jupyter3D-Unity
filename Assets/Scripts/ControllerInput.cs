@@ -11,7 +11,9 @@ public class ControllerInput : MonoBehaviour
     const float pi = Mathf.PI;
 
     public float BaseSpeed = 10f;
-    public float BaseAmp = 0;
+    public float BaseAmpl = 0.02f;
+    public float BaseK = 2.0f;
+
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -65,13 +67,15 @@ public class ControllerInput : MonoBehaviour
 
         float joyStickY = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY);
 
-        if (joyStickY > 0.90f)
+        if (joyStickY > 0)
         {
-            ProcedualGrid.amplitude += BaseAmp;
+            Debug.Log("##Value is " + BaseAmpl);
+            ProcedualGrid.amplitude += BaseAmpl;
         }
-        if (joyStickY < -0.90f)
+        if (joyStickY < 0)
         {
-            ProcedualGrid.amplitude -= BaseAmp;
+            Debug.Log("##Value is " + BaseAmpl);
+            ProcedualGrid.amplitude -= BaseAmpl;
         }
         // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
     }
@@ -80,7 +84,7 @@ public class ControllerInput : MonoBehaviour
     {
         if (ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Grip))
         {
-            ProcedualGrid.k *= 2.0f;
+            ProcedualGrid.k *= BaseK;
 
         }
 
