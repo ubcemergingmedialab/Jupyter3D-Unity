@@ -51,10 +51,8 @@ public class ControllerInput : MonoBehaviour
 
     private void triggerFunctionality()
     {
-        bool trigger = (ViveInput.GetPressEx(HandRole.LeftHand, ControllerButton.Trigger));
-
-
-        if (trigger){
+        
+        if ((ViveInput.GetPressEx(HandRole.LeftHand, ControllerButton.Trigger))){
             ProcedualGrid.play = true;
         } else
         {
@@ -110,14 +108,12 @@ public class ControllerInput : MonoBehaviour
     
     private void joystickXYFunctionality()
     {
-
+        
         float joyStickY = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickY);
         float joyStickX = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickX);
 
-        moveDirection = new Vector3(Input.GetAxis("Horizontal") , 0.0f, Input.GetAxis("Horizontal"));
-
-        // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
-        //x and y of joystick moves the x and z of the proceduralgrid gameobject
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Horizontal"));
+        
     }
 
     private void restartScene()
