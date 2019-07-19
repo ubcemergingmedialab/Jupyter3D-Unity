@@ -53,10 +53,10 @@ public class ControllerInput : MonoBehaviour
     {
         
         if (ViveInput.GetPressEx(HandRole.LeftHand, ControllerButton.Trigger)){
-            ProcedualGrid.play = true;
+            ProceduralGrid.play = true;
         } else
         {
-            ProcedualGrid.play = false;
+            ProceduralGrid.play = false;
         }
     }
 
@@ -67,20 +67,20 @@ public class ControllerInput : MonoBehaviour
 
         if (joyStickYLEFT > 0.5f)
         {
-            ProcedualGrid.amplitude += BaseAmpl;
+            ProceduralGrid.amplitude += BaseAmpl;
         }
         if (joyStickYLEFT < -0.5f)
         {
-            ProcedualGrid.amplitude -= BaseAmpl;
+            ProceduralGrid.amplitude -= BaseAmpl;
         }
         // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
     }
 
     private void gripFunctionality()
     {
-        if ((ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Grip)) && (ProcedualGrid.k <= (((2f * pi) / 25))*2 ))
+        if ((ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Grip)) && (ProceduralGrid.k <= (((2f * pi) / 25))*2 ))
         {
-            ProcedualGrid.k *= BaseK;
+            ProceduralGrid.k *= BaseK;
 
         }
 
@@ -91,14 +91,14 @@ public class ControllerInput : MonoBehaviour
         if (ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Pad))
         {
 
-            if (ProcedualGrid.funcVR < 5)
+            if (ProceduralGrid.funcVR < 5)
             {
-                ProcedualGrid.funcVR += 1;
+                ProceduralGrid.funcVR += 1;
                 //ProcedualGrid.function = ProcedualGrid.func;
             }
             else
             {
-                ProcedualGrid.funcVR = 0;
+                ProceduralGrid.funcVR = 0;
 
             }
 
@@ -121,8 +121,8 @@ public class ControllerInput : MonoBehaviour
         if (ViveInput.GetPressDown(HandRole.RightHand, ControllerButton.Pad))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            ProcedualGrid.amplitude = 1;
-            ProcedualGrid.k = ((2f * pi) / 15);
+            ProceduralGrid.amplitude = 1;
+            ProceduralGrid.k = ((2f * pi) / 15);
         }
     }
 

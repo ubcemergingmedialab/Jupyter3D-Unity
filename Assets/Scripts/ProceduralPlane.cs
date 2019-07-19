@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Waves : MonoBehaviour
+public class ProceduralPlane : MonoBehaviour
 {
     [Range(1, 100)]
     public int frame = 1;

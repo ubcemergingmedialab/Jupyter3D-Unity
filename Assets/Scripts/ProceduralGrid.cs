@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/
+// https://www.youtube.com/watch?v=dc8LjeaL3k4
+
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 
-public class ProcedualGrid : MonoBehaviour
+public class ProceduralGrid : MonoBehaviour
 {
 
     // initializing lists and the mesh
@@ -120,6 +123,8 @@ public class ProcedualGrid : MonoBehaviour
                 v++;
             }
         }
+
+        
 
         v = 0; // reset vertex tracker, as it got incresed in the previous for loop
 

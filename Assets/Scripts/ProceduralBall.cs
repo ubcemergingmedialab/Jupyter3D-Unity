@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Implementation of the wave 
 
-public class GraphV2 : MonoBehaviour {
+public class ProceduralBall : MonoBehaviour {
 
     public Transform pointPrefab;
 
