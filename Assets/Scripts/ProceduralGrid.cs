@@ -6,45 +6,47 @@ using UnityEngine;
 // https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/
 // https://www.youtube.com/watch?v=dc8LjeaL3k4
 
+// Required components
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 
 public class ProceduralGrid : MonoBehaviour
 {
 
-    // initializing lists and the mesh
+    // initializing mesh and lists, to keep track of what is going on with all the mesh
     Mesh mesh;
     Vector3[] vertices;
     int[] triangles;
 
-    // grid setting
-    public float cellSize = 1;
-    public Vector3 gridOffset; // to change the initial x y z position pf the grid
+    // grid settings
+    public float cellSize = 1;  // size of the cell 
+    public Vector3 gridOffset;  // to determine the initial origin of where the grid appears
+    public int gridSize;        // Square grid : assuming we want our width and height to be the same 
+                                // if we want to have a rectangle, we would need gridSizeX and gridSizeY
 
-    public static bool play = false;
-    private float time;
     
-    public int gridSize; // Square grid, else create two variables 
+    public static bool play = false; // TODO 
+    private float time; // TODO 
+    
 
 
-
+    // TODO 
     // functions list 
     public GraphFunctionName funcUnity;
     public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction, MexicanHat
     };
 
+    // TODO
     // Variables for the obove funstions 
     public static float amplitude = 1;
     public static float k = ((2f * pi) / 25); // chnage the wavelength
     public static float speed = 10;  // can be changed but used 5 for nice display 
-    
-    public static float funcVR = 0;
-
+    public static float funcVR = 0
     // variables used to allow changing the function in vr and unity at the same time 
     private int prevFunc = 0; 
 
 
-    /*
+    /* NOTE ------------
      * A wavelength of 1 produces no wave at all, instead the whole plane goes up and down uniformly. 
      * Other small wavelengths produce ugly waves that can even move backwards.
      * This problem is causes by the limited resolution of our plane mesh. Because vertices are spaces one unit apart, 
@@ -56,20 +58,18 @@ public class ProceduralGrid : MonoBehaviour
      * 
      */
 
-
     const float pi = Mathf.PI;
 
 
     // Use this for initialization
     void Awake()
     {
-
-        mesh = GetComponent<MeshFilter>().mesh;
-
+        mesh = GetComponent<MeshFilter>().mesh;     // to get the component in unity
     }
 
     void Update()
     {
+        // TODO
         if (play)
         {
             time++;
@@ -86,24 +86,23 @@ public class ProceduralGrid : MonoBehaviour
     void MakeContiguousProceduralGrid()
     // Populating the informations, creating these arrays and filling it with the appropriate information 
     {
-        //GraphFunction f = functions[(int)function];
-
+        // TODO
         if (prevFunc != (int)funcUnity){
             funcVR = (int)funcUnity;
         }
 
+        // TODO
         GraphFunction f = functions[(int)funcVR]; // Method delegation part using the array of functions defined above
-        // float sec = Time.time;        // Variable t refers to time 
 
         // set array sizes
-        vertices = new Vector3[(gridSize + 1) * (gridSize + 1)];  // girdsize two dimentions, + plus one to have that final corner 
+        vertices = new Vector3[(gridSize + 1) * (gridSize + 1)];    // single grid that is equal to the number of cells in a given row plus one because of the  final border needed on the x and z axis
         triangles = new int[gridSize * gridSize * 6];     // 6 sides for 2 triangles to make a quad 
 
         // set tracker intergers
         int v = 0;  // tracker for vertices 
         int t = 0;  // tracker for triangles
         ;
-        // set vertex offset - because we don't have a permanent size 
+        // set vertex offset - shifting the cells so that they are centered on whole numbers
         float vertexOffSet = cellSize * 0.5f; // deviding is more expensive than multiplying - to do this have in the middle at the origin  - shifter at the origin rather than being in a corner
 
 
@@ -157,10 +156,8 @@ public class ProceduralGrid : MonoBehaviour
     void UpdateMesh()
     {
         mesh.Clear(); // clearing the mesh to make sure there is no existing information 
-
         mesh.vertices = vertices;   // assigning our vertices 
         mesh.triangles = triangles; // assigning our triangles 
-
         mesh.RecalculateNormals(); // fixing the lightening issue with the new normals
     }
 
