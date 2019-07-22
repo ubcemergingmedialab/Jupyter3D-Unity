@@ -43,8 +43,8 @@
 			float k = 2 * UNITY_PI / _Wavelength;
 			float f = k * (p.x - _Speed * _Time.y);
 
-			p.y = _Amplitude * sin(f);
-			p.x += _Amplitude * cos(f);
+			p.y = _Amplitude * sin(2*f);
+			// p.x += _Amplitude * cos(f);
 
 			float3 tangent = normalize(float3(1, k * _Amplitude * cos(f), 0));
 			float3 normal = float3(-tangent.y, tangent.x, 0);
