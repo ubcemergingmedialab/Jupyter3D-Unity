@@ -18,7 +18,7 @@ public class BoxColliderSize : MonoBehaviour
     void Update()
     {
 
-        m_Collider.size = new Vector3(20, 1 + ProceduralGrid.amplitude * 2f, 20);
+        m_Collider.size = new Vector3(ProceduralGrid2.boundaries *2f, ProceduralGrid2.amplitude * 2f, ProceduralGrid2.boundaries * 2f);
         Debug.Log("Current BoxCollider Size : " + m_Collider.size);
     }
 }
