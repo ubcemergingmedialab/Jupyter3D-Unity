@@ -41,7 +41,7 @@ public class ProceduralGrid : MonoBehaviour
     public static float amplitude = 1;
     public static float k = ((2f * pi) / 25); // chnage the wavelength
     public static float speed = 10;  // can be changed but used 5 for nice display 
-    public static float funcVR = 0
+    public static float funcVR = 0;
     // variables used to allow changing the function in vr and unity at the same time 
     private int prevFunc = 0; 
 
