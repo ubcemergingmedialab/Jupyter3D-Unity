@@ -18,6 +18,7 @@ public class Flag : MonoBehaviour
     Vector3 newPosition;
 
     public GameObject flag;
+    public GameObject prefab;
 
 
     // Use this for initialization
@@ -47,9 +48,13 @@ public class Flag : MonoBehaviour
             // If raycast hits, spawn flag at hit point
             if (Physics.Raycast(ray, out hit))
             {
-                newPosition = hit.point;
-                flag.transform.position = newPosition;
+               newPosition = hit.point;
+               flag.transform.position = newPosition;
+
+               // reset new position variable
+               newPosition = new Vector3(0,0,0);
             }
+            GameObject obj = Instantiate(prefab, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.identity) as GameObject;
         }
     }
 }
