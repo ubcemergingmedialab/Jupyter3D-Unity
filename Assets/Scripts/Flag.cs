@@ -40,20 +40,25 @@ public class Flag : MonoBehaviour
             GetComponent<Renderer>().enabled = true;
 
             RaycastHit hit;
-
             var ray = new Ray();
+
+            // store controller positions on variable
             ray.origin = RightController.position;
             ray.direction = RightController.forward;
 
             // If raycast hits, spawn flag at hit point
             if (Physics.Raycast(ray, out hit))
             {
+               //position of hit point stored on newPosition variable
                newPosition = hit.point;
+               
+               //set position of flag to newPosition
                flag.transform.position = newPosition;
 
                // reset new position variable
                newPosition = new Vector3(0,0,0);
             }
+            // instantiate new instance of flag prefab
             GameObject obj = Instantiate(prefab, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.identity) as GameObject;
         }
     }
