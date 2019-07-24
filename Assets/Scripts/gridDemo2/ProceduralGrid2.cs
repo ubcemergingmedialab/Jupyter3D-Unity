@@ -88,7 +88,6 @@ public class ProceduralGrid2 : MonoBehaviour
 
         mesh = GetComponent<MeshFilter>().mesh;
         makeGrid();
-    
 
     }
 
