@@ -14,6 +14,7 @@ public class ControllerInput2 : MonoBehaviour
     // Increments of the variables by the controllers
     public float AmplitudeIncrement = 0.02f;
     public float WavelengthDecrement = 2.0f;
+    public float BoundariesIncrement = 1.0f;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -38,7 +39,8 @@ public class ControllerInput2 : MonoBehaviour
     private void Update()
     {
         triggerFunctionality();
-        joystickYFunctionality();
+        joystickYLeftFunctionality();
+        joystickYRightFunctionality();
         gripFunctionality();
         buttonFunctionality();
         restartScene();
@@ -54,7 +56,7 @@ public class ControllerInput2 : MonoBehaviour
         
     }
 
-    private void joystickYFunctionality()
+    private void joystickYLeftFunctionality()
     {
 
         float joyStickYLEFT = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY);
@@ -68,6 +70,21 @@ public class ControllerInput2 : MonoBehaviour
             ProceduralGrid2.amplitude -= AmplitudeIncrement;
         }
         // ProcedualGrid.amplitude = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY) * BaseAmp + 1;
+    }
+
+    private void joystickYRightFunctionality()
+    {
+
+        float joyStickYRight = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickY);
+
+        if (joyStickYRight > 0.5f)
+        {
+            ProceduralGrid2.boundaries += BoundariesIncrement;
+        }
+        if (joyStickYRight < -0.5f)
+        {
+            ProceduralGrid2.boundaries -= BoundariesIncrement;
+        }
     }
 
     private void gripFunctionality()
