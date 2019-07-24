@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4e298a8df4f7a4caeb68458523a70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointPrefab: {fileID: 0}
+  pointPrefab: {fileID: 1746813341}
   resolution: 10
   function: 0
 --- !u!1 &1442871485
@@ -602,6 +602,11 @@ Prefab:
     - {fileID: 114070040481237452, guid: 0f025800c3d05d149ac5d4d0319e7deb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0f025800c3d05d149ac5d4d0319e7deb, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1746813341 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4938273986525908, guid: 0f025800c3d05d149ac5d4d0319e7deb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1746813340}
 --- !u!1 &1899747060
 GameObject:
   m_ObjectHideFlags: 0
