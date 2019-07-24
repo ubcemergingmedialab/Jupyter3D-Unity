@@ -26,7 +26,8 @@ public class ProceduralGrid : MonoBehaviour
     
     public static bool play = false; // TODO 
     private float time; // TODO 
-    
+
+    public static float boundaries = 10;
 
 
     // TODO 
@@ -107,10 +108,10 @@ public class ProceduralGrid : MonoBehaviour
 
 
         // Setting the vertices 
-        float xmin = -10;
-        float xmax = 10;
-        float zmin = -10;
-        float zmax = 10;
+        float xmin = -boundaries;
+        float xmax = boundaries;
+        float zmin = -boundaries;
+        float zmax = boundaries;
         float x, z;
         for (int i = 0; i <= gridSize; i++) // iterating through the x dimension - less or equal because we added the + 1
         {

@@ -123,12 +123,12 @@ GameObject:
   - component: {fileID: 69000918}
   - component: {fileID: 69000917}
   - component: {fileID: 69000916}
-  - component: {fileID: 69000915}
   - component: {fileID: 69000920}
   - component: {fileID: 69000919}
   - component: {fileID: 69000921}
+  - component: {fileID: 69000915}
   m_Layer: 0
-  m_Name: ProceduralGrid
+  m_Name: ProceduralGrid2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,12 +142,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 69000914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2a6da7d0252c00429ddcb0dbeab4ca5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2131cc6f118d1c841a2812721e5c453f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellSize: 1
-  gridOffset: {x: 0, y: 0, z: 0}
-  gridSize: 20
+  gridSize: 100
   funcUnity: 0
 --- !u!23 &69000916
 MeshRenderer:
@@ -223,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 69000914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378726aea79385a49b48053db3826310, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b2ac9044bbddf5468ceb404345d4d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Collider: {fileID: 0}
@@ -410,7 +408,7 @@ GameObject:
   - component: {fileID: 608200857}
   - component: {fileID: 608200856}
   m_Layer: 0
-  m_Name: TextEquation
+  m_Name: TextEquation2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,7 +422,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 608200855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094cd76e65b79b34380931d7c201188a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c0885726f73e06489552154b2679095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!102 &608200857
@@ -595,7 +593,7 @@ GameObject:
   - component: {fileID: 1114774930}
   - component: {fileID: 1114774929}
   m_Layer: 0
-  m_Name: ControllerInput
+  m_Name: ControllerInput2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,12 +607,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1114774928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e248fd3ea698450489356c8c0403d062, type: 3}
+  m_Script: {fileID: 11500000, guid: 796cd9b35884a34458e1d0e4bd3aaa3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseSpeed: 10
-  BaseAmpl: 0.02
-  BaseK: 2
+  AmplitudeIncrement: 0.02
+  WavelengthDecrement: 2
+  BoundariesIncrement: 1
 --- !u!4 &1114774930
 Transform:
   m_ObjectHideFlags: 0
