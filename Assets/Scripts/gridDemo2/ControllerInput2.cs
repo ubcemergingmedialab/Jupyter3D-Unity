@@ -40,7 +40,7 @@ public class ControllerInput2 : MonoBehaviour
     {
         triggerFunctionality();
         joystickYLeftFunctionality();
-        joystickYRightFunctionality();
+        // joystickYRightFunctionality();
         gripFunctionality();
         buttonFunctionality();
         restartScene();
