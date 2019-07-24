@@ -160,6 +160,7 @@ public class ProceduralGrid2 : MonoBehaviour
     // On each frame update, all we have to do is update the y-values in the grid. All else is the same. 
     // In this function, we can also adjust amplitude, wavelength, frequency in the resulting waveforms
 
+    
     void updateGrid()
     {
         if (prevGridSize != (int)gridSize)

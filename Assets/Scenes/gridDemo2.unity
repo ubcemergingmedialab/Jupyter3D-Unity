@@ -849,6 +849,7 @@ MonoBehaviour:
   RightController: {fileID: 382070760}
   Aimcircle: {fileID: 0}
   flag: {fileID: 1218480348}
+  prefab: {fileID: 1842003756632904, guid: 24b7f0cd29f8d6f44ab2da70cea4885c, type: 2}
 --- !u!65 &1218480350
 BoxCollider:
   m_ObjectHideFlags: 0
