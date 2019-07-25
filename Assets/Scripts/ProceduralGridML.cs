@@ -1,7 +1,8 @@
-/*  M. Lamoureux, July 22, 2019
-    Largely based on the GridDemo/ProceduralGridML, which was my redo of code that was written by Rayhan Fakim.
-    
-    Here, we want to do actual finite difference code to greate the waves. 
+﻿/*  M. Lamoureux, July 21, 2019
+    Largely based on the GridDemo/ProceduralGrid code that was written by Rayhan Fakim.
+    I took out the VR controls, so I can run this on a Mac.
+    Did careful work on memory allocation, so we don't waste time rebuilding the grid with each frame display.
+    The compiled app runs smoothly on a Mac; however, it is jerky on 
 */
 
 using System;
@@ -20,19 +21,17 @@ using UnityEngine;
 
 	The gridSize is an integer, it is the number of points in both the x and z directions. Don't use gridSize+1 anywhere!
 	Sometimes it is useful to have gridSize to be an odd integer, so we hit the orgin (0,0).
+    This odd number is great for the Mexican hat example. 
  */
 
 
-public class FDgrid : MonoBehaviour
+public class ProceduralGridML : MonoBehaviour
 {
 
-    // initializing lists of vertices and triangles, and the mesh used for the display
+    // initializing lists and the mesh
     Mesh mesh;
-    Vector3[] vertices;
-    int[] triangles;
-
-     float[,] yVals;  // This will be 3 arrays of floats, to hold past, present and future values of FD calculations (whay float?)
-    int yPast, yPresent, yFuture;
+    Vector3[] vertices; // Note the syntax. "vertices" is a pointer to a list of Vector3's. Memory is allocated in makeGrid().
+    int[] triangles; // "triangeles" is a point to a list of integer indices. Memory for the list is allocated in makeGrid().
 
     // The following six variables are set in the Uniy Inspector
     public float amplitude = 1;
@@ -102,7 +101,7 @@ public class FDgrid : MonoBehaviour
     		gridSize = 3;
     	if (gridSize > 101)
     		gridSize = 101;
-    	// first we set up the arrays for the graphical display. Vertices and triangles are needed. 
+    	// set array sizes
         vertices = new Vector3[gridSize*gridSize];  	// gridsize in two dimentions 
         triangles = new int[gridSize * gridSize * 6];   // 6 sides for 2 triangles in each square of grid 
          // set tracker integers
@@ -128,7 +127,8 @@ public class FDgrid : MonoBehaviour
             }
         }
 
-        v = 0; // reset vertex tracker, as it got increased in the previous for loop
+        v = 0; // reset vertex tracker, as it got incresed in the previous for loop
+
         // Setting each cell's triangles
         for (int i = 0; i < gridSize-1; i++) { // iterating through the x dimension
             for (int j = 0; j < gridSize-1; j++) { // iterating through the z dimension - no need the equal side cause no + 1
@@ -145,19 +145,7 @@ public class FDgrid : MonoBehaviour
             v++; // iterate our vertices one more time so that we start at a new row 
         }
 
-        // Now we set up the computational arrays for the FD computations, with appropriate index numbers
-        yVals = new float[3,gridSize*gridSize];
-        yPast = 0; yPresent = 1; yFuture = 2; 
 
-        // set up the initial values for the waveform
-        float dx = .1f*(1/30f);
-        float dz = .1f*(1/30f);
-        for (v = 0; v < gridSize*gridSize; v++) {
-            yVals[yPast,v] =  Gauss(vertices[v].x,vertices[v].z,0f);
-            yVals[yPresent,v] = Gauss(vertices[v].x-dx,vertices[v].z,0f);
-        }
-        zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
-    
     }
 
     // On each frame update, all we have to do is update the y-values in the grid. All else is the same. 
@@ -175,53 +163,14 @@ public class FDgrid : MonoBehaviour
     	}
 
         GraphFunction f = functions[(int)funcVR]; // Method delegation part using the array of functions defined above
-     //   float sec = Time.time;        // Variable sec refers to time, in seconds we hope
+        float sec = Time.time;        // Variable sec refers to time, in seconds we hope
     
-        oneFDstep();
-
-    	// set graphics vertex offset, using data from the finite difference calculation
-    	for (int v=0;v<(gridSize*gridSize); v++)
-            vertices[v].y = yVals[yPresent,v]; 
+    	// set vertex offset - because we don't have a permanent size 
+    	for (int v=0;v<gridSize*gridSize; v++)
+    		vertices[v].y = amplitude*f(vertices[v].x/wavelength, vertices[v].z/wavelength, frequency*sec); 
     }
 
-    // we update the finite difference calculations by one time step
-    // The formula comes from the central difference for the 2nd derivative of Y, so
-    // y(t+1) = 2*y(t) - y(t-1) + alpha*Laplacian of y(t).
-    // The magic constant is alpha = (c*dt/dx)^2, where c = velocity, dt = time step, dx = dz = spatial step
-    
-    void oneFDstep() { 
-
-        float dx = 2f/(gridSize-1);  // assume xmin, xmax spans a distance of 2.
-        float dt = 1f/30f;  // thirty frames a second, maybe
-        float c = 0.1f; // default velocity of 1/10 unit length per second
-        float alpha = (c*dt/dx)*(c*dt/dx);
-
-        int v = gridSize;  // Skip the first row, which we want to do (zero boundary)
-        for (int i=1; i<gridSize-1;i++) {
-            for (int j=1; j<gridSize-1;j++) {
-                v++;  // move in by one column. Note we miss the first column, which we want to do anyway
-                yVals[yFuture,v] = 2f*yVals[yPresent,v] - yVals[yPast,v] - alpha*(4f*yVals[yPresent,v] -yVals[yPresent,v-1]-yVals[yPresent,v+1]-yVals[yPresent,v-gridSize]-yVals[yPresent,v+gridSize] );
-            }
-            v += 2; // skip over the last column as well
-        }
-        // increment the past/present/future indices
-        yPast = (++yPast) % 3;
-        yPresent = (++yPresent) % 3;
-        yFuture = (++yFuture) % 3;
-    }
-
-    // We set the edges of the computational grid to zero. This gives a hard reflector for the wave.
-    void zeroFDedges() {
-        for (int i=0; i<gridSize;i++) // bottom edge
-            yVals[yPast,i] = yVals[yPresent,i] = yVals[yFuture,i] = 0f;
-         for (int i=0; i<gridSize*gridSize;i+=gridSize) // left edge
-            yVals[yPast,i] = yVals[yPresent,i] = yVals[yFuture,i] = 0f;
-         for (int i=(gridSize-1)*gridSize; i<gridSize*gridSize;i++) // top edge
-            yVals[yPast,i] = yVals[yPresent,i] = yVals[yFuture,i] = 0f;
-         for (int i=gridSize-1; i<gridSize*gridSize;i+=gridSize) // right edge
-            yVals[yPast,i] = yVals[yPresent,i] = yVals[yFuture,i] = 0f;
-        
-    }
+ 
 
     
     // These are various wave-like functions. We normalize them to have a wavelength of 1, and frequency of 1 Hz.
@@ -270,16 +219,9 @@ public class FDgrid : MonoBehaviour
     // Mathematical implementation
     static float MexicanHat(float x, float z, float t)
     {
-        float d = Mathf.Sqrt(x * x + z * z);
+	    float d = Mathf.Sqrt(x * x + z * z);
         float y = Mathf.Sin(tau * (d - t));
         y /= 1f + 2f * d;
         return y;
     }
-
-    // Gaussian
-    static float Gauss(float x, float z, float t) {
-        float w = .25f;  // the width of the Gaussian
-        return Mathf.Exp(-(x*x + z*z)/(w*w));
-    }
-
 }

@@ -309,7 +309,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1604334261074162, guid: 0f025800c3d05d149ac5d4d0319e7deb,
     type: 2}
   m_PrefabInternal: {fileID: 1746813340}
---- !u!114 &1361252520
+--- !u!114 &1361252521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1361252519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fbca8a9d1ee14bb8bdc57938d7c683c, type: 3}
+  m_Script: {fileID: 11500000, guid: c735b4cb622a143a082c028e485790ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   amplitude: 1
@@ -541,7 +541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 404836, guid: cb3370c18187bb444b240cfb08dcc02f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 404836, guid: cb3370c18187bb444b240cfb08dcc02f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -562,10 +562,6 @@ Prefab:
     - target: {fileID: 404836, guid: cb3370c18187bb444b240cfb08dcc02f, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2071970, guid: cb3370c18187bb444b240cfb08dcc02f, type: 2}
-      propertyPath: field of view
-      value: 19.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb3370c18187bb444b240cfb08dcc02f, type: 2}
@@ -650,7 +646,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1604334261074162, guid: 0f025800c3d05d149ac5d4d0319e7deb, type: 2}
       propertyPath: m_Name
-      value: FD_grid
+      value: gridML
       objectReference: {fileID: 0}
     - target: {fileID: 114444792019234260, guid: 0f025800c3d05d149ac5d4d0319e7deb,
         type: 2}
