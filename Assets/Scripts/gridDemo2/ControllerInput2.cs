@@ -40,7 +40,7 @@ public class ControllerInput2 : MonoBehaviour
     {
         triggerFunctionality();
         joystickYLeftFunctionality();
-        // joystickYRightFunctionality();
+
         gripFunctionality();
         buttonFunctionality();
         restartScene();
@@ -120,11 +120,8 @@ public class ControllerInput2 : MonoBehaviour
     private void joystickXYFunctionality()
     {
 
-        float joyStickY = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickY);
-        float joyStickX = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickX);
-
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Horizontal"));
-
+        //moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
+       transform.position += Vector3.forward * Time.deltaTime;
     }
 
     private void restartScene()
