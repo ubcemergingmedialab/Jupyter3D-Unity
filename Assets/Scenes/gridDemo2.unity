@@ -359,6 +359,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114748653089386476, guid: 908385e102034b64c8dbcbe78481b6c7,
+        type: 2}
+      propertyPath: m_Text
+      value: Grip - Plant flag
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 908385e102034b64c8dbcbe78481b6c7, type: 2}
   m_IsPrefabParent: 0
@@ -812,6 +817,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114340566329349816, guid: 30aa41cfd3076a74ca18bc973c638f7e,
+        type: 2}
+      propertyPath: m_Text
+      value: Trigger - Drag function
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30aa41cfd3076a74ca18bc973c638f7e, type: 2}
   m_IsPrefabParent: 0
@@ -1023,6 +1033,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114384806892692724, guid: dbc5e2875efc87648a442ef2ba7b2832,
+        type: 2}
+      propertyPath: m_Text
+      value: Grip - Change wavelength
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbc5e2875efc87648a442ef2ba7b2832, type: 2}
   m_IsPrefabParent: 0
@@ -1160,6 +1175,13 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114318926508499186, guid: 9dc72d2161709fb4b877ea2ff2de253c,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Joystick - Toggle to move
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9dc72d2161709fb4b877ea2ff2de253c, type: 2}
@@ -1520,6 +1542,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114145918565670600, guid: 210ef7220be73324cb4eb09821be606f,
+        type: 2}
+      propertyPath: m_Text
+      value: Trigger - Play/Pause
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 210ef7220be73324cb4eb09821be606f, type: 2}
   m_IsPrefabParent: 0
@@ -1619,6 +1646,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603955757438110, guid: 8a3cbc43e8ece6f48bccc727345a0221,
+        type: 2}
+      propertyPath: m_Text
+      value: Joystick - Toggle to change amplitude
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a3cbc43e8ece6f48bccc727345a0221, type: 2}
