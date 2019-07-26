@@ -11,5 +11,6 @@ public enum GraphFunctionName
     Sine2DFunction2 = 2,
     MultiSine = 3,
     MultiSine2DFunction = 4,
-    MexicanHat = 5
+    MexicanHat = 5, 
+    Gauss = 6
 }

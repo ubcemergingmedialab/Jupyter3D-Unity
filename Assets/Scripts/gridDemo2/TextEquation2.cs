@@ -51,6 +51,10 @@ public class TextEquation2 : MonoBehaviour
         {
             displayText = "Mexican Hat";
         }
+        else if (ProceduralGrid2.funcVR == 6)
+        {
+            displayText = "Gaussian";
+        }
 
         testMesh = GetComponent<TextMesh>();
         testMesh.text = displayText;
