@@ -124,11 +124,14 @@ public class ControllerInput2 : MonoBehaviour
        transform.position += Vector3.forward * Time.deltaTime;
     }
 
+	//This function restarts the scene by resetting the scene by loading it again
+	//Created by Harvey Huang
     private void restartScene()
     {
         if (ViveInput.GetPressDown(HandRole.RightHand, ControllerButton.Pad))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			//this resets the variables back to the original numbers which is 1
             ProceduralGrid2.amplitude = 1;
             ProceduralGrid2.wavelength = 1;
         }
