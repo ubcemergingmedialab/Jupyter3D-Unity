@@ -101,7 +101,14 @@ public class ProceduralGrid2 : MonoBehaviour
 
     void Update() {
 
+        if (funcVR == 5)
+        {
+            makeGrid();
+        }
+
         updateGrid();
+        zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
+        oneFDstep();
         mesh.Clear(); // clearing the mesh to make sure there is no existing information 
         mesh.MarkDynamic(); // This makes the mesh more responsive to frequent changes. 
 		mesh.vertices = vertices;   // assigning our vertices 
@@ -161,7 +168,8 @@ public class ProceduralGrid2 : MonoBehaviour
             }
             v++; // iterate our vertices one more time so that we start at a new row 
         }
-
+        
+       
         // Now we set up the computational arrays for the FD computations, with appropriate index numbers
         yVals = new float[3, gridSize * gridSize];
         yPast = 0; yPresent = 1; yFuture = 2;
@@ -175,7 +183,9 @@ public class ProceduralGrid2 : MonoBehaviour
             yVals[yPresent, v] = Gauss(vertices[v].x - dx, vertices[v].z, 0f);
         }
 
-        zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
+        
+        
+
 
     }
 
@@ -199,10 +209,7 @@ public class ProceduralGrid2 : MonoBehaviour
 
         GraphFunction f = functions[(int)funcVR]; // Method delegation part using the array of functions defined above
 
-        if ((int)funcUnity == 6)
-        {
-            oneFDstep();
-        }
+        
 
         if (play)
         {
@@ -272,7 +279,7 @@ public class ProceduralGrid2 : MonoBehaviour
     static float Gauss(float x, float z, float t)
     {
         float w = .25f;  // the width of the Gaussian
-        return Mathf.Exp(-(x * x + z * z) / (w * w));
+        return Mathf.Exp(-(x * x + z * z) / (w * w))*t;
     }
 
 
