@@ -31,8 +31,9 @@ public class FDgrid : MonoBehaviour
     Vector3[] vertices;
     int[] triangles;
 
-     float[,] yVals;  // This will be 3 arrays of floats, to hold past, present and future values of FD calculations (whay float?)
-    int yPast, yPresent, yFuture;
+    float[] vField; // the velocity field for the wave, in case of non-uniform velocity
+    float[,] yVals;  // This will be 3 arrays of floats, to hold past, present and future values of FD calculations (whay float?)
+    int yPast, yPresent, yFuture; // indices into the 3 arrays (will update cyclically)
 
     // The following six variables are set in the Uniy Inspector
     public float amplitude = 1;
@@ -40,8 +41,14 @@ public class FDgrid : MonoBehaviour
     public float frequency = 1;
     public int gridSize; // Square grid, else create two variables 
     public Vector3 gridOffset; // to change the initial x y z position of the grid
+    public GraphFunctionName funcInitial;
     public GraphFunctionName funcUnity;
  
+    // vField options, to match the index variable "funcVelocity" above.
+   // public GraphFunction[] vFunctions = { //Array of all the velocities that are available to be user
+   //     Slow, Fast, TwoLayer
+   // };
+
     // functions list , to match the index variable "funcUnity" above.
     public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction, MexicanHat
@@ -53,6 +60,7 @@ public class FDgrid : MonoBehaviour
     // variables used to allow changing the function in vr and unity at the same time 
     private int prevFunc = 0; 
     private int prevGridSize = 10; 
+    private int prevInitial = 0; 
 
 
     /*
@@ -145,17 +153,34 @@ public class FDgrid : MonoBehaviour
             v++; // iterate our vertices one more time so that we start at a new row 
         }
 
+        // Set up the velocity field
+        vField = new float[gridSize*gridSize];
+        TwoLayer(vField, gridSize);
+
         // Now we set up the computational arrays for the FD computations, with appropriate index numbers
         yVals = new float[3,gridSize*gridSize];
         yPast = 0; yPresent = 1; yFuture = 2; 
 
         // set up the initial values for the waveform
-        float dx = .1f*(1/30f);
-        float dz = .1f*(1/30f);
-        for (v = 0; v < gridSize*gridSize; v++) {
-            yVals[yPast,v] =  Gauss(vertices[v].x,vertices[v].z,0f);
-            yVals[yPresent,v] = Gauss(vertices[v].x-dx,vertices[v].z,0f);
-        }
+        float dt = 1f/30f;  // thirty frames a second, maybe
+        float c = 0.1f; // default velocity of 1/10 unit length per second
+        float w = .1f; // the width of the Gaussian or packet
+        float dx = c*dt;
+        float dz = 0*c*dt; // let's not move in z direction
+
+        if ((int)funcInitial == 0)
+           for (v = 0; v < gridSize*gridSize; v++) {
+               yVals[yPast,v] =  Gauss((vertices[v].x + .5f)/w,(vertices[v].z)/w,0f);
+               yVals[yPresent,v] = Gauss((vertices[v].x + .5f - dx)/w,(vertices[v].z-dz)/w,0f);
+            }
+        
+         if ((int)funcInitial == 1)
+           for (v = 0; v < gridSize*gridSize; v++) {
+               yVals[yPast,v] =  WPacket((vertices[v].x + .5f)/w,(vertices[v].z)/w,0f);
+               yVals[yPresent,v] = WPacket((vertices[v].x + .5f - dx)/w,(vertices[v].z-dz)/w,0f);
+            }
+        prevInitial = (int) funcInitial;
+        
         zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
     
     }
@@ -174,7 +199,28 @@ public class FDgrid : MonoBehaviour
             prevFunc = (int)funcUnity;
     	}
 
-        GraphFunction f = functions[(int)funcVR]; // Method delegation part using the array of functions defined above
+        if (prevInitial != (int)funcInitial) {  // user changed the choice of initial function
+            // set up the initial values for the waveform
+            float dt = 1f/30f;  // thirty frames a second, maybe
+            float c = 0.1f; // default velocity of 1/10 unit length per second
+            float w = .1f; // the width of the Gaussian or packet
+            float dx = c*dt;
+            float dz = 0*c*dt; // let's not move in z direction
+           if ((int)funcInitial == 0)
+                for (int v = 0; v < gridSize*gridSize; v++) {
+                    yVals[yPast,v] =  Gauss((vertices[v].x + .5f)/w,(vertices[v].z)/w,0f);
+                    yVals[yPresent,v] = Gauss((vertices[v].x + .5f - dx)/w,(vertices[v].z-dz)/w,0f);
+                }
+        
+            if ((int)funcInitial == 1)
+                for (int v = 0; v < gridSize*gridSize; v++) {
+                    yVals[yPast,v] =  WPacket((vertices[v].x + .5f)/w,(vertices[v].z)/w,0f);
+                    yVals[yPresent,v] = WPacket((vertices[v].x + .5f - dx)/w,(vertices[v].z-dz)/w,0f);
+                }
+        prevInitial = (int) funcInitial;           
+        }
+
+     //   GraphFunction f = functions[(int)funcVR]; // Method delegation part using the array of functions defined above
      //   float sec = Time.time;        // Variable sec refers to time, in seconds we hope
     
         oneFDstep();
@@ -200,7 +246,7 @@ public class FDgrid : MonoBehaviour
         for (int i=1; i<gridSize-1;i++) {
             for (int j=1; j<gridSize-1;j++) {
                 v++;  // move in by one column. Note we miss the first column, which we want to do anyway
-                yVals[yFuture,v] = 2f*yVals[yPresent,v] - yVals[yPast,v] - alpha*(4f*yVals[yPresent,v] -yVals[yPresent,v-1]-yVals[yPresent,v+1]-yVals[yPresent,v-gridSize]-yVals[yPresent,v+gridSize] );
+                yVals[yFuture,v] = 2f*yVals[yPresent,v] - yVals[yPast,v] - vField[v]*(4f*yVals[yPresent,v] -yVals[yPresent,v-1]-yVals[yPresent,v+1]-yVals[yPresent,v-gridSize]-yVals[yPresent,v+gridSize] );
             }
             v += 2; // skip over the last column as well
         }
@@ -278,8 +324,47 @@ public class FDgrid : MonoBehaviour
 
     // Gaussian
     static float Gauss(float x, float z, float t) {
-        float w = .25f;  // the width of the Gaussian
-        return Mathf.Exp(-(x*x + z*z)/(w*w));
+        return Mathf.Exp(-(x*x + z*z));
+    }
+   
+   // wave packet, with ripples in x direction
+    static float WPacket(float x, float z, float t) {
+        return Mathf.Exp(-x*x)*Mathf.Exp(-z*z/(3*3))*Mathf.Cos(tau*x);
+    }
+
+// We define some functions for setting up the vField array
+
+    static void Slow(float[] vField, int gridSize) {
+        float dx = 2f/(gridSize-1);  // assume xmin, xmax spans a distance of 2.
+        float dt = 1f/30f;  // thirty frames a second, maybe
+        float c = 0.1f; // default velocity of 1/10 unit length per second
+        float alpha = (c*dt/dx)*(c*dt/dx);
+
+        for (int v=0; v<gridSize*gridSize; v++)
+            vField[v] = alpha;
+    }
+
+    static void Fast(float[] vField, int gridSize) {
+        float dx = 2f/(gridSize-1);  // assume xmin, xmax spans a distance of 2.
+        float dt = 1f/30f;  // thirty frames a second, maybe
+        float c = 0.5f; // default velocity of 1/10 unit length per second
+        float alpha = (c*dt/dx)*(c*dt/dx);
+
+        for (int v=0; v<gridSize*gridSize; v++)
+            vField[v] = alpha;
+    }
+
+    static void TwoLayer(float[] vField, int gridSize) {
+        float dx = 2f/(gridSize-1);  // assume xmin, xmax spans a distance of 2.
+        float dt = 1f/30f;  // thirty frames a second, maybe
+        float c = 0.1f; // default velocity of 1/10 unit length per second
+        float alpha = (c*dt/dx)*(c*dt/dx);
+
+        for (int v=0; v<gridSize*gridSize; v++)
+            if (v < gridSize*gridSize/2)
+                vField[v] = alpha;
+            else
+                vField[v] = 4.0f*alpha;
     }
 
 }

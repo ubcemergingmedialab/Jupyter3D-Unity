@@ -325,6 +325,7 @@ MonoBehaviour:
   frequency: 1
   gridSize: 51
   gridOffset: {x: 0, y: 0, z: 0}
+  funcVelocity: 1
   funcUnity: 5
 --- !u!23 &1361252522
 MeshRenderer:
