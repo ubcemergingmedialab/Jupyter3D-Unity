@@ -123,8 +123,8 @@ public class ProceduralGrid2 : MonoBehaviour
     	// force gridSize into a reasonable range. 
     	if (gridSize <3)
     		gridSize = 3;
-    	if (gridSize > 101)
-    		gridSize = 101;
+    	if (gridSize > 301)
+    		gridSize = 301;
     	// set array sizes
         vertices = new Vector3[gridSize*gridSize];  	// gridsize in two dimentions 
         triangles = new int[gridSize * gridSize * 6];   // 6 sides for 2 triangles in each square of grid 
@@ -207,20 +207,27 @@ public class ProceduralGrid2 : MonoBehaviour
             prevFunc = (int)funcUnity;
         }
 
+
         GraphFunction f = functions[(int)funcVR]; // Method delegation part using the array of functions defined above
 
-        
+
 
         if (play)
         {
-            sec += speedOfWave;
-            // set vertex offset - because we don't have a permanent size 
-            for (int v = 0; v < gridSize * gridSize; v++)
+            if (funcVR < 6)
             {
-                vertices[v].y = amplitude * f(vertices[v].x / wavelength, vertices[v].z / wavelength, frequency * sec);
+                sec += speedOfWave;
+                // set vertex offset - because we don't have a permanent size 
+                for (int v = 0; v < gridSize * gridSize; v++)
+                {
+                    vertices[v].y = amplitude * f(vertices[v].x / wavelength, vertices[v].z / wavelength, frequency * sec);
+                }
             }
+            else
+                for (int v = 0; v < gridSize * gridSize; v++)
+                    vertices[v].y = amplitude * yVals[yPresent, v];
         }
-
+            
     }
 
  
@@ -279,7 +286,7 @@ public class ProceduralGrid2 : MonoBehaviour
     static float Gauss(float x, float z, float t)
     {
         float w = .25f;  // the width of the Gaussian
-        return Mathf.Exp(-(x * x + z * z) / (w * w))*t;
+        return Mathf.Exp(-(x * x + z * z) / (w * w));
     }
 
 
