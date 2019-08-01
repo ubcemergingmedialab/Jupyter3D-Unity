@@ -7,6 +7,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using GrabberPool = HTC.UnityPlugin.Utility.ObjectPool<Draggable.Grabber>;
 
+//The draggable is script is part of the HTC INPUT UTILITY PLUGIN
+//It is part of the 3DDRAG example under ViveInputUtility
+// - Harvey Huang
+
 // demonstrate of dragging things useing built in EventSystem handlers
 public class Draggable : GrabbableBase<Draggable.Grabber>
     , IInitializePotentialDragHandler
