@@ -1,22 +1,22 @@
 ﻿using System.Collections;
-
 using System.Collections.Generic;
-
 using UnityEngine;
-
 using UnityEngine.AI;
-
 using HTC.UnityPlugin.Vive;
 
-
+// ** Flag scripts for the flag planting task, 
+//    @author Kyle Mas, written on 07-10-19 ** // 
 
 public class Flag : MonoBehaviour
 {
+    // public variables for the controllers
     public Transform RightController;
     public Transform Aimcircle;
 
+    // variable to store the new position of the flag
     Vector3 newPosition;
 
+    // public variables for the flag object to be planted
     public GameObject flag;
     public GameObject prefab;
 
@@ -26,6 +26,8 @@ public class Flag : MonoBehaviour
     void Start()
     {
         newPosition = transform.position;
+
+        // renders the component on the scene when set to true
         GetComponent<Renderer>().enabled = true;
     }
 
