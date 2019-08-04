@@ -6,27 +6,21 @@ using UnityEngine;
 public class TextEquation2 : MonoBehaviour
 {
 
-    private string displayText;
-    private TextMesh testMesh;
-
-    // Use this for initialization
-    void Start()
-    {
-
-
-    }
+    private string displayText; // creates a string and stores the name of function
+    private TextMesh testMesh; // generates a textmesh that displays function name in 3D 
 
     // Update is called once per frame
     void Update()
     {
         display();
     }
-
+    //Function for displaying the text equation
     void display()
     {
 
 
-
+        //the text equation is stored as elements in the funcVR grid. Thus, we are checking 
+        //which element is currently being used
         if (ProceduralGrid2.funcVR == 0)
         {
             displayText = "Ocean Wave 1";
@@ -51,8 +45,9 @@ public class TextEquation2 : MonoBehaviour
         {
             displayText = "Mexican Hat";
         }
-
+        //this creates new component TextMesh
         testMesh = GetComponent<TextMesh>();
+        //this displays the name of function in TextMesh
         testMesh.text = displayText;
     }
 }
