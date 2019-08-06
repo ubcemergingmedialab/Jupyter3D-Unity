@@ -107,8 +107,6 @@ public class ProceduralGrid2 : MonoBehaviour
         }
 
         updateGrid();
-        zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
-        oneFDstep();
         mesh.Clear(); // clearing the mesh to make sure there is no existing information 
         mesh.MarkDynamic(); // This makes the mesh more responsive to frequent changes. 
 		mesh.vertices = vertices;   // assigning our vertices 
@@ -183,10 +181,6 @@ public class ProceduralGrid2 : MonoBehaviour
             yVals[yPresent, v] = Gauss(vertices[v].x - dx, vertices[v].z, 0f);
         }
 
-        
-        
-
-
     }
 
     // On each frame update, all we have to do is update the y-values in the grid. All else is the same. 
@@ -227,7 +221,10 @@ public class ProceduralGrid2 : MonoBehaviour
                 for (int v = 0; v < gridSize * gridSize; v++)
                     vertices[v].y = amplitude * yVals[yPresent, v];
         }
-            
+
+        zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
+        oneFDstep();
+
     }
 
  
