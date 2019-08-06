@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿// Created by Amelia He, this script is used to display the name of the equations in VR 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //tester
 public class TextEquation2 : MonoBehaviour
 {
-
+    // creates a string and stores the name of function
     private string displayText;
+    // generates a textmesh that displays function name in 3D
     private TextMesh testMesh;
 
     // Use this for initialization
@@ -22,11 +25,12 @@ public class TextEquation2 : MonoBehaviour
         display();
     }
 
+    //Function for displaying the text equation
     void display()
     {
-
-
-
+        
+        //the text equation is stored as elements in the funcVR grid. Thus, we are checking 
+        //which element is currently being used
         if (ProceduralGrid2.funcVR == 0)
         {
             displayText = "Ocean Wave 1";
@@ -52,7 +56,9 @@ public class TextEquation2 : MonoBehaviour
             displayText = "Mexican Hat";
         }
 
+        //this creates new component TextMesh
         testMesh = GetComponent<TextMesh>();
+        //this displays the name of function in TextMesh
         testMesh.text = displayText;
     }
 }
