@@ -220,10 +220,12 @@ public class ProceduralGrid2 : MonoBehaviour
             else
                 for (int v = 0; v < gridSize * gridSize; v++)
                     vertices[v].y = amplitude * yVals[yPresent, v];
+
+            zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
+            oneFDstep();
         }
 
-        zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
-        oneFDstep();
+        
 
     }
 
