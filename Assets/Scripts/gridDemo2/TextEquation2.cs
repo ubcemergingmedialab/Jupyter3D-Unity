@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//tester
 public class TextEquation2 : MonoBehaviour
 {
     // creates a string and stores the name of function
