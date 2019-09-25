@@ -54,3 +54,6 @@ This repository hosts the Jupyter3D project, a set of tools to allow users to di
 - Kyle Mas, Developer (May 2019 - August 2019)
 - Musa Mohannad, Devveloper (January 2019 - April 2019)
 - Julia Zhu, Developer (January 2019 - April 2019)
+
+## Documentation
+For further documentation and information, please visit the UBC Wiki Page for Jupyter3D: https://wiki.ubc.ca/Documentation:Jupyter3D
