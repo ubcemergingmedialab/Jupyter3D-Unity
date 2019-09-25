@@ -31,11 +31,11 @@ This repository hosts the Jupyter3D project, a set of tools to allow users to di
 ## Team
 
 ### Faculty
-- Dr. Matthew Yedlin 
+- Dr. Matthew Yedlin -- 
   Electrical and Computer Engineering Depart, Faculty of Applied Science, University of British Columbia
   and Faculty in Residence at UBC Studios and Emerging Media Lab
 
-- Dr. Michael Lamoureux
+- Dr. Michael Lamoureux --
   Mathematics and Statistics, University of Calgary
   
 ### Current Student Team
