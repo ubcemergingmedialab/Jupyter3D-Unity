@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 201
-  funcUnity: 0
+  funcUnity: 6
 --- !u!23 &69000916
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -617,7 +617,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmplitudeIncrement: 0.02
   WavelengthDecrement: 2
-  BoundariesIncrement: 1
 --- !u!4 &1114774930
 Transform:
   m_ObjectHideFlags: 0

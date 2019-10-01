@@ -91,7 +91,7 @@ public class ControllerInput2 : MonoBehaviour
         // checks if the left controller's joystick is pressed, then change function to the next week =
         if (ViveInput.GetPressDown(HandRole.LeftHand, ControllerButton.Pad))
         {
-
+            // current number of functions [6]
             if (ProceduralGrid2.funcVR < 6)
             {
                 ProceduralGrid2.funcVR += 1;

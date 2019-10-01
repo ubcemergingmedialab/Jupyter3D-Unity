@@ -55,7 +55,7 @@ public class ProceduralGrid2 : MonoBehaviour
     private float sec = 1;
     private float speedOfWave = 1/120f;
 
-    public int gridSize; // Square grid, else create two variables 
+    public int gridSize; // Square grid, else create two variables , represents the number of mesh on the scene
     public GraphFunctionName funcUnity;
  
     // functions list , to match the index variable "funcUnity" above.
@@ -63,15 +63,14 @@ public class ProceduralGrid2 : MonoBehaviour
         SineFunction, Sine2DFunction1, Sine2DFunction2, MultiSineFunction, MultiSine2DFunction, MexicanHat, Gauss
     };
 
-   
+    // variable for you to change the function of the waves
+    // funcVR is for controllers (priority)
     public static float funcVR = 0;
 
     // variables used to allow changing the function in vr and unity at the same time 
     private int prevFunc = 0; 
     private int prevGridSize = 10;
     
-
-
     /*
      * A wavelength of 1 produces no wave at all, instead the whole plane goes up and down uniformly. 
      * Other small wavelengths produce ugly waves that can even move backwards.
@@ -180,7 +179,6 @@ public class ProceduralGrid2 : MonoBehaviour
             yVals[yPast, v] = Gauss(vertices[v].x, vertices[v].z, 0f);
             yVals[yPresent, v] = Gauss(vertices[v].x - dx, vertices[v].z, 0f);
         }
-
     }
 
     // On each frame update, all we have to do is update the y-values in the grid. All else is the same. 
@@ -208,6 +206,7 @@ public class ProceduralGrid2 : MonoBehaviour
 
         if (play)
         {
+            // loops through the list of functions
             if (funcVR < 6)
             {
                 sec += speedOfWave;
@@ -332,6 +331,5 @@ public class ProceduralGrid2 : MonoBehaviour
             yVals[yPast, i] = yVals[yPresent, i] = yVals[yFuture, i] = 0f;
         for (int i = gridSize - 1; i < gridSize * gridSize; i += gridSize) // right edge
             yVals[yPast, i] = yVals[yPresent, i] = yVals[yFuture, i] = 0f;
-
     }
 }
