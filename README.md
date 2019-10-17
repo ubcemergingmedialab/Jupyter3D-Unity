@@ -1,4 +1,4 @@
-# Jupyter3D Project
+# Jupyter3D Project v1.0
 
 ## Project Information
 
