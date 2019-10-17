@@ -57,6 +57,9 @@ public class ProceduralGrid2 : MonoBehaviour
 
     public int gridSize; // Square grid, else create two variables , represents the number of mesh on the scene
     public GraphFunctionName funcUnity;
+
+    // New String variable that indicates the name of the wave.
+    public static String gridName; 
  
     // functions list , to match the index variable "funcUnity" above.
     public GraphFunction[] functions = { //Array of all the methods/functions to graph that are available to be used
@@ -238,6 +241,7 @@ public class ProceduralGrid2 : MonoBehaviour
 
     static float SineFunction(float x, float z, float t)        // float function because it needs to return a value 
     {
+        gridName = "Ocean Wave";
         return Mathf.Sin(tau*(x-t));
     }
 
@@ -246,11 +250,13 @@ public class ProceduralGrid2 : MonoBehaviour
         float y = Mathf.Sin(tau*(x-t));
         y += 0.5f*Mathf.Sin(tau*(x - 2f * t));       // adding complexity 
         y *= .667f;
+        gridName = "Ocean Wave 2";
         return y;
     }
 
     static float Sine2DFunction1(float x, float z, float t)
     {
+        gridName = "Drum Wave";
         return Mathf.Sin(tau * (.707f*(x + z) - t ));
     }
 
@@ -259,6 +265,7 @@ public class ProceduralGrid2 : MonoBehaviour
         float y = Mathf.Sin(tau * (x - t));
         y += Mathf.Sin(tau * (z - t));
         y *= 0.5f;
+        gridName = "Multi Sine Wave 1";
         return y;
     }
 
@@ -268,6 +275,7 @@ public class ProceduralGrid2 : MonoBehaviour
         y += Mathf.Sin(tau *(z - t));
         y += 0.5f*Mathf.Sin(tau * (z - 2f * t ));
         y *= 0.2f;
+        gridName = "Multi Sine Wave 2";
         return y;
 
     }
@@ -277,6 +285,7 @@ public class ProceduralGrid2 : MonoBehaviour
 	    float d = Mathf.Sqrt(x * x + z * z);
         float y = Mathf.Sin(tau * (d - t));
         y /= 1f + 2f * d;
+        gridName = "Mexican Hat";
         return y;
     }
 
@@ -284,6 +293,7 @@ public class ProceduralGrid2 : MonoBehaviour
     static float Gauss(float x, float z, float t)
     {
         float w = .25f;  // the width of the Gaussian
+        gridName = "Gaussian";
         return Mathf.Exp(-(x * x + z * z) / (w * w));
     }
 
