@@ -17,8 +17,13 @@ public class UIToggle : MonoBehaviour {
         joystickABfunctionality();
     }
     private void joystickABfunctionality() {
-        if (ViveInput.GetPressDown(HandRole.RightHand, ControllerButton.AKey)) {
-            on = !on;
+        if (ViveInput.GetPressDown(HandRole.RightHand, ControllerButton.AKey))
+        {
+            on = false;
+            uiCanvas.SetActive(on);
+        }
+        else if (ViveInput.GetPressDown(HandRole.RightHand, ControllerButton.BKey)) {
+            on = true;
             uiCanvas.SetActive(on);
         }
     }
