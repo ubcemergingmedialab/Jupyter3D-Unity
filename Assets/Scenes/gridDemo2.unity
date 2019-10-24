@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 69000919}
   - component: {fileID: 69000921}
   - component: {fileID: 69000915}
+  - component: {fileID: 69000922}
   m_Layer: 0
   m_Name: ProceduralGrid2
   m_TagString: Untagged
@@ -258,6 +259,17 @@ MonoBehaviour:
     m_TypeName: Draggable+UnityEventDraggable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   m_scrollingSpeed: 0.01
+--- !u!114 &69000922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 69000914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05eafc54de3c94a38a91affbf08a3be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &77468395
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +727,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gauss
+  m_Text: Gaussian
 --- !u!222 &275093349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1003,15 +1015,15 @@ MonoBehaviour:
   m_HandleRect: {fileID: 249829102}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 5
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 69000922}
         m_MethodName: SliderF_Changed
-        m_Mode: 0
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1429,19 +1441,19 @@ MonoBehaviour:
   m_Value: 6
   m_Options:
     m_Options:
-    - m_Text: Sine
+    - m_Text: Ocean Wave
       m_Image: {fileID: 0}
-    - m_Text: MultiSine
+    - m_Text: 'Ocean Wave #2'
       m_Image: {fileID: 0}
-    - m_Text: Sine2d1
+    - m_Text: Drum Wave
       m_Image: {fileID: 0}
-    - m_Text: Sine2d2
+    - m_Text: Multi Sine Wave
       m_Image: {fileID: 0}
-    - m_Text: MultiSine2d
+    - m_Text: 'Multi Sine Wave #2'
       m_Image: {fileID: 0}
-    - m_Text: MexicanHat
+    - m_Text: Mexican Hat
       m_Image: {fileID: 0}
-    - m_Text: Gauss
+    - m_Text: Gaussian
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2582,24 +2594,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 1873792977}
   m_HandleRect: {fileID: 1272737624}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 5
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 69000922}
         m_MethodName: SliderL_Changed
-        m_Mode: 0
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1328220517
@@ -3479,7 +3491,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 450334, guid: 12ee41758a687f54e98120e486ccd16e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.16
+      value: 0.165
       objectReference: {fileID: 0}
     - target: {fileID: 450334, guid: 12ee41758a687f54e98120e486ccd16e, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3487,7 +3499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 450334, guid: 12ee41758a687f54e98120e486ccd16e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.42
+      value: 2.402
       objectReference: {fileID: 0}
     - target: {fileID: 450334, guid: 12ee41758a687f54e98120e486ccd16e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4307,13 +4319,13 @@ MonoBehaviour:
   m_HandleRect: {fileID: 77468396}
   m_Direction: 0
   m_MinValue: 0.01
-  m_MaxValue: 1.5
+  m_MaxValue: 5
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 69000922}
         m_MethodName: SliderA_Changed
         m_Mode: 0
         m_Arguments:
@@ -4323,7 +4335,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &2097986551 stripped
