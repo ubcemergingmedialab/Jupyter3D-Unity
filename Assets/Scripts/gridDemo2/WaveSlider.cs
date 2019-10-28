@@ -10,12 +10,12 @@ public class WaveSlider : MonoBehaviour {
 		ProceduralGrid2.amplitude = newVal;
 	}
 
-	public void SliderL_Changed(float newVal){
+	public void SliderW_Changed(float newVal){
 		ProceduralGrid2.wavelength = newVal;
 	}
 
 	public void SliderF_Changed(float newVal){
 		ProceduralGrid2.frequency = newVal;
 	}
-		
+
 }
