@@ -85,7 +85,7 @@ public class ProceduralGrid2 : MonoBehaviour
 
 
     const float pi = Mathf.PI;
-	const float tau = 2.0f*Mathf.PI;  // This is a more useful constant. Read the "Tau manifesto" online!
+  	const float tau = 2.0f*Mathf.PI;  // This is a more useful constant. Read the "Tau manifesto" online!
 
 
     // Awake() and Update() are system functions called by unity, to setup the animation, and update it each frame
@@ -108,8 +108,8 @@ public class ProceduralGrid2 : MonoBehaviour
         updateGrid();
         mesh.Clear(); // clearing the mesh to make sure there is no existing information
         mesh.MarkDynamic(); // This makes the mesh more responsive to frequent changes.
-		mesh.vertices = vertices;   // assigning our vertices
-    	mesh.triangles = triangles; // assigning our triangles
+		    mesh.vertices = vertices;   // assigning our vertices
+    	  mesh.triangles = triangles; // assigning our triangles
         mesh.RecalculateNormals(); // fixing the lightening issue with the new normals
     }
 
@@ -275,9 +275,9 @@ public class ProceduralGrid2 : MonoBehaviour
     static float MexicanHat(float x, float z, float t)
     {
 	    float d = Mathf.Sqrt(x * x + z * z);
-        float y = Mathf.Sin(tau * (d - t));
-        y /= 1f + 2f * d;
-        return y;
+      float y = Mathf.Sin(tau * (d - t));
+      y /= 1f + 2f * d;
+      return y;
     }
 
     // Gaussian
