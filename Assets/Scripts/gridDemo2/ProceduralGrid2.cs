@@ -53,7 +53,7 @@ public class ProceduralGrid2 : MonoBehaviour
     // Time related variables - time guard
     public static bool play = true; // Time will only increase if play is set to true
     private float sec = 1;
-    private float speedOfWave = 1/120f;
+    public static float speedOfWave = 1 / 120f;
 
     public int gridSize; // Square grid, else create two variables , represents the number of mesh on the scene
     public GraphFunctionName funcUnity;
