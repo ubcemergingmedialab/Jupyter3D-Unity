@@ -41,7 +41,7 @@ public class ProceduralGrid2 : MonoBehaviour
     int[] triangles; // "triangeles" is a point to a list of integer indices. Memory for the list is allocated in makeGrid().
 
     // The following six variables are set in the Uniy Inspector
-    public static float amplitude = 1;
+    public static float amplitude = .5f;
     public static float wavelength = 1;
     public static float frequency = 1;
     public static float boundaries = 1;

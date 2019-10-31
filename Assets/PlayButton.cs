@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
 public class PlayButton : MonoBehaviour {
 	public Button button;
 
@@ -20,3 +20,4 @@ public class PlayButton : MonoBehaviour {
 		ProceduralGrid2.play = true;
 	}
 }
+*/

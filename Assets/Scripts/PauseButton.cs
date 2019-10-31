@@ -20,3 +20,4 @@ public class PauseButton : MonoBehaviour {
 		ProceduralGrid2.play = false;
 	}
 }
+
