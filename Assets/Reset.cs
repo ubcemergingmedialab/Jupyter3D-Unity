@@ -5,6 +5,8 @@ using HTC.UnityPlugin.Vive;
 using UnityEngine.SceneManagement;
 
 public class Reset : MonoBehaviour {
+	//This method restarts the scene by resetting the scene by loading it again
+
 	public void ResetScene(){
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 

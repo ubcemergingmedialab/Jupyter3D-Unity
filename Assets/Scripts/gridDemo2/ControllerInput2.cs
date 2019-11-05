@@ -37,7 +37,6 @@ public class ControllerInput2 : MonoBehaviour
         leftJoystickFunctionality();
         leftGripFunctionality();
         leftButtonFunctionality();
-        restartScene();
     }
 
 
@@ -101,21 +100,6 @@ public class ControllerInput2 : MonoBehaviour
         float joyStickX = ViveInput.GetAxisEx(HandRole.RightHand, ControllerAxis.JoystickX);
 
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Horizontal"));
-    }
-
-    //This method restarts the scene by resetting the scene by loading it again
-    //Created by Harvey Huang
-    private void restartScene()
-    {
-        if (ViveInput.GetPressDown(HandRole.RightHand, ControllerButton.Pad))
-        {
-            // Reload the scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-            //this resets the variables back to the original numbers which are 1
-            ProceduralGrid2.amplitude = 1;
-            ProceduralGrid2.wavelength = 1;
-        }
     }
 
 }
