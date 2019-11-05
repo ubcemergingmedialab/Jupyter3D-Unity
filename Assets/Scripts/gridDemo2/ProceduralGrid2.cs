@@ -15,7 +15,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 
@@ -99,18 +99,20 @@ public class ProceduralGrid2 : MonoBehaviour
     }
 
     void Update() {
-
-        if (funcVR == 5)
+        if (play)
         {
-            makeGrid();
-        }
+            if (funcVR == 5)
+            {
+                makeGrid();
+            }
 
-        updateGrid();
-        mesh.Clear(); // clearing the mesh to make sure there is no existing information
-        mesh.MarkDynamic(); // This makes the mesh more responsive to frequent changes.
-		    mesh.vertices = vertices;   // assigning our vertices
-    	  mesh.triangles = triangles; // assigning our triangles
-        mesh.RecalculateNormals(); // fixing the lightening issue with the new normals
+            updateGrid();
+            mesh.Clear(); // clearing the mesh to make sure there is no existing information
+            mesh.MarkDynamic(); // This makes the mesh more responsive to frequent changes.
+            mesh.vertices = vertices;   // assigning our vertices
+            mesh.triangles = triangles; // assigning our triangles
+            mesh.RecalculateNormals(); // fixing the lightening issue with the new normals
+        }
     }
 
     // We make the computational grid. Usually we only have to do this at "Awake" or when grid size changes.
