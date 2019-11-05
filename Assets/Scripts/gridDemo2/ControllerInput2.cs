@@ -1,5 +1,5 @@
 ﻿/* Created by Rayhan Fakim, this script is used to implement functionalities to the controllers
- * which includes changing the values of the amplitude amd wavelength, playing/pausing, 
+ * which includes changing the values of the amplitude amd wavelength, playing/pausing,
  * planting the flag, dragging, changing the displayed function and reseting the scene
  */
 
@@ -24,40 +24,27 @@ public class ControllerInput2 : MonoBehaviour
 
     // Declaring and instantiating a vector3 which will be used to move the function horrizontally
     private Vector3 moveDirection = Vector3.zero;
-    
+
 
     private void Start()
     {   // instantiating the characyerController
         characterController = GetComponent<CharacterController>();
     }
 
-    // this method is called every method functionality for the controllers at every frame 
+    // this method is called every method functionality for the controllers at every frame
     private void Update()
     {
-        leftTriggerFunctionality();
         leftJoystickFunctionality();
         leftGripFunctionality();
         leftButtonFunctionality();
         restartScene();
     }
 
-    // this method controls the left controller's trigger
-    // it checks if the trigger is pressed and then it will change the play state to true or false which will
-    // make the function dynamic or static 
-    private void leftTriggerFunctionality()
-    {
-
-        if (ViveInput.GetPressDownEx(HandRole.LeftHand, ControllerButton.Trigger))
-        {
-            ProceduralGrid2.play = !ProceduralGrid2.play;
-        }
-
-    }
 
     // this method controls the left controller's joystick
     private void leftJoystickFunctionality()
     {
-        // putting the value of the axis of the joyustick in a float 
+        // putting the value of the axis of the joyustick in a float
         float joyStickYLEFT = ViveInput.GetAxisEx(HandRole.LeftHand, ControllerAxis.JoystickY);
 
         // checks if the axis is positive or negative, then increment or decrement the amplitude
@@ -97,7 +84,7 @@ public class ControllerInput2 : MonoBehaviour
                 ProceduralGrid2.funcVR += 1;
             }
             else
-            // making sure it loops around numbers between 0 and 6 only as there are a total of 7 functions 
+            // making sure it loops around numbers between 0 and 6 only as there are a total of 7 functions
             {
                 ProceduralGrid2.funcVR = 0;
             }
@@ -106,7 +93,7 @@ public class ControllerInput2 : MonoBehaviour
 
     }
 
-    // This method controllers how the function can be forwards and backwards 
+    // This method controllers how the function can be forwards and backwards
     // Created by Harvey Huag with the help of Rayhan Fakim
     private void joystickXYFunctionality()
     {
