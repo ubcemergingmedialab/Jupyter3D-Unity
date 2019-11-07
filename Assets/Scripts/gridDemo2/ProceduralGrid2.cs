@@ -15,7 +15,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine; 
+using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 
@@ -211,7 +211,7 @@ public class ProceduralGrid2 : MonoBehaviour
             // loops through the list of functions
             if (funcVR < 6)
             {
-                sec += speedOfWave;
+                sec += 2 * speedOfWave;
                 // set vertex offset - because we don't have a permanent size
                 for (int v = 0; v < gridSize * gridSize; v++)
                 {
