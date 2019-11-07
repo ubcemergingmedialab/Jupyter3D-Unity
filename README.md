@@ -1,4 +1,4 @@
-# Jupyter3D Project
+# Jupyter3D Project v1.0
 
 ## Project Information
 
@@ -40,6 +40,11 @@ This repository hosts the Jupyter3D project, a set of tools to allow users to di
   
 ### Current Student Team
 - Kyle Mas, Project Technical Lead (September 2019 - present)
+- Sandy Co, UX/UI Design Lead (September 2019 - present)
+- William Van, Developer (September 2019 - present)
+- Clarence Adrian, Developer (September 2019 - present)
+- Brian Chau, Developer (September 2019 - present)
+- Achintya Chandwani, Developer (September 2019 - present)
 
 
 ### Previous Student Team
