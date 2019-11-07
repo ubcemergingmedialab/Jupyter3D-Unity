@@ -15,7 +15,7 @@ public class WaveSlider : MonoBehaviour {
 	}
 
 	public void SliderF_Changed(float newVal){
-		ProceduralGrid2.frequency = newVal;
+		ProceduralGrid2.incSpeed = newVal;
 	}
 
 }
