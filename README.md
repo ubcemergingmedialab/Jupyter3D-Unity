@@ -17,15 +17,11 @@ This repository hosts the Jupyter3D project, a set of tools to allow users to di
 4. Use the controllers to play around with the wave.
   - Right controller functions
     - Grip: Hold to plant the flag.
-    - Joystick: Press reset and remove flags [will remove all the flags].
-    - Trigger: Hold to move the flag around + rotate.
+    - Trigger: Hold to move the wave around. 
     - Trigger + Joystick: Move wave forward and back.
     
   - Left controller functions
-    - Grip: divides the wavelength by a factor of 2. 
-    - Joystick: Press to change the wave type. 
-    - Trigger: Play & pause the scene. 
-    - Joystick: Move up and down to adjust the wave amplitude. 
+    - Trigger: Hold to move the wave around. 
  
 
 ## Team
