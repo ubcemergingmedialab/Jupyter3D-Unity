@@ -45,6 +45,7 @@ public class ProceduralGrid2 : MonoBehaviour
     public static float wavelength = 1;
     public static float frequency = 1;
     public static float boundaries = 1;
+    public static float incSpeed = 1;
 
     // Finite differential variables
     float[,] yVals;  // This will be 3 arrays of floats, to hold past, present and future values of FD calculations (whay float?)
@@ -211,7 +212,7 @@ public class ProceduralGrid2 : MonoBehaviour
             // loops through the list of functions
             if (funcVR < 6)
             {
-                sec += 2 * speedOfWave;
+                sec += incSpeed * speedOfWave;
                 // set vertex offset - because we don't have a permanent size
                 for (int v = 0; v < gridSize * gridSize; v++)
                 {

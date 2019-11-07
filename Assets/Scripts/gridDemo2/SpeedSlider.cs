@@ -9,6 +9,6 @@ public class SpeedSlider: MonoBehaviour
 
     public void SliderS_Changed(float newVal)
     {
-        ProceduralGrid2.speedOfWave = newVal;
+        ProceduralGrid2.incSpeed = newVal;
     }
 }
