@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/gridDemo2.unity
+    guid: 58b8e9f15cec846aa8ef1c8d9076ce16
+  - enabled: 1
+    path: Assets/Scenes/welcomeScene.unity
+    guid: 0511710d1122b7e4ca9356714034d1d3
