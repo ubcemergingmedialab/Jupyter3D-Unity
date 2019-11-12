@@ -241,6 +241,7 @@ public class ProceduralGrid2 : MonoBehaviour
 
     static float SineFunction(float x, float z, float t)        // float function because it needs to return a value
     {
+        
         return Mathf.Sin(tau*(x-t));
     }
 
@@ -249,6 +250,7 @@ public class ProceduralGrid2 : MonoBehaviour
         float y = Mathf.Sin(tau*(x-t));
         y += 0.5f*Mathf.Sin(tau*(x - 2f * t));       // adding complexity
         y *= .667f;
+        
         return y;
     }
 
@@ -281,12 +283,14 @@ public class ProceduralGrid2 : MonoBehaviour
       float y = Mathf.Sin(tau * (d - t));
       y /= 1f + 2f * d;
       return y;
+
     }
 
     // Gaussian
     static float Gauss(float x, float z, float t)
     {
         float w = .25f;  // the width of the Gaussian
+        
         return Mathf.Exp(-(x * x + z * z) / (w * w));
     }
 
