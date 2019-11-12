@@ -3596,7 +3596,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1064862546}
   m_Direction: 0
   m_MinValue: 0.5
-  m_MaxValue: 5
+  m_MaxValue: 8
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -4196,7 +4196,7 @@ GameObject:
   - component: {fileID: 1839056809}
   - component: {fileID: 1839056814}
   m_Layer: 5
-  m_Name: UICanvas
+  m_Name: MenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
