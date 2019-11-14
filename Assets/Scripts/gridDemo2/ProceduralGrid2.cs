@@ -99,21 +99,35 @@ public class ProceduralGrid2 : MonoBehaviour
 
     }
 
-    void Update() {
-        if (play)
-        {
-            if (funcVR == 5)
+    public void Update() {
+
+             // purpose of this?
+            if (funcVR == 5 && play)
             {
                 makeGrid();
             }
 
-            updateGrid();
+            // if play then call updategrid as per usual
+            // else, temporarily set incSpeed to 0 then call updateGrid
+            // which results in the wave being updated but not animated
+            if (play)
+            {
+                updateGrid();
+            }
+            else if (funcVR < 6)
+            {
+                float tempSpeed = incSpeed;
+                incSpeed = 0;
+                updateGrid();
+                incSpeed = tempSpeed;
+            }
+
             mesh.Clear(); // clearing the mesh to make sure there is no existing information
             mesh.MarkDynamic(); // This makes the mesh more responsive to frequent changes.
             mesh.vertices = vertices;   // assigning our vertices
             mesh.triangles = triangles; // assigning our triangles
             mesh.RecalculateNormals(); // fixing the lightening issue with the new normals
-        }
+        
     }
 
     // We make the computational grid. Usually we only have to do this at "Awake" or when grid size changes.
@@ -207,8 +221,8 @@ public class ProceduralGrid2 : MonoBehaviour
 
 
 
-        if (play)
-        {
+        //if (play)
+        //{
             // loops through the list of functions
             if (funcVR < 6)
             {
@@ -225,7 +239,7 @@ public class ProceduralGrid2 : MonoBehaviour
 
             zeroFDedges();  // Let's kill off the edges, to give a hard reflecting boundary for the waves
             oneFDstep();
-        }
+        //}
 
 
 

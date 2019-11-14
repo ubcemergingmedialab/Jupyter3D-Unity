@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WaveDropdown : MonoBehaviour {
 
 	public Dropdown dropdown;
-	
+
 	// Update is called once per frame
 	void Update () {
 		int value = dropdown.value;

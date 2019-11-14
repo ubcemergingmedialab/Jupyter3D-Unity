@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class WaveSlider : MonoBehaviour {
-
-	public void SliderA_Changed(float newVal){
+public class WaveSlider : MonoBehaviour
+{
+	public void SliderA_Changed(float newVal)
+	{
 		ProceduralGrid2.amplitude = newVal;
 	}
 
