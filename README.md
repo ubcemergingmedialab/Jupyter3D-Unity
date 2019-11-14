@@ -40,7 +40,6 @@ This repository hosts the Jupyter3D project, a set of tools to allow users to di
 - William Van, Developer (September 2019 - present)
 - Clarence Adrian, Developer (September 2019 - present)
 - Brian Chau, Developer (September 2019 - present)
-
 - Achintya Chandwani, Developer (October 2019 - present)
 
 
