@@ -17,7 +17,7 @@ public class buttonScript : MonoBehaviour {
 	void Start()
 	{
 		controlPanel.gameObject.SetActive(false);
-		on = false;
+		on = true;
 	}
 
 	// Toggles controller diagram
