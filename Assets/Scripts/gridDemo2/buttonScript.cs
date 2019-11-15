@@ -9,18 +9,17 @@ using UnityEngine.SceneManagement;
 // Start and ImgToggle added by Will Van on Nov 14, 2019
 // Deals with all the button functionalities like play, pause, back, reset.
 public class buttonScript : MonoBehaviour {
-	
-	private GameObject controlPanel;
-	private bool on;
-	
+
+	public GameObject controlPanel;
+	bool on;
+
 	// Initializes values for ImgToggle to work
 	void Start()
 	{
-		controlPanel = GameObject.Find("ControlDiagram");
-		on = true;
 		controlPanel.gameObject.SetActive(false);
+		on = false;
 	}
-	
+
 	// Toggles controller diagram
 	public void ImgToggle()
 	{
@@ -54,8 +53,8 @@ public class buttonScript : MonoBehaviour {
 	public void NextScene(){
 		SceneManager.LoadScene("welcomeScene");
 	}
-	
-	
+
+
 
 
 }
