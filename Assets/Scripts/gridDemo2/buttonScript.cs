@@ -18,9 +18,13 @@ public class buttonScript : MonoBehaviour {
 		ProceduralGrid2.wavelength = 1;
 	}
 
-	// Changes the play (boolean) variable of the ProceduralGrid to false
-	// which pauses loading the scene.
-	public void pauseScene(){
+    public void resetWave() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Changes the play (boolean) variable of the ProceduralGrid to false
+    // which pauses loading the scene.
+    public void pauseScene(){
 		ProceduralGrid2.play = false;
 	}
 

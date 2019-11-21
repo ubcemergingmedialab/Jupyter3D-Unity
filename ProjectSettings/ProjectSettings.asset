@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 14
+  serializedVersion: 15
   productGUID: 4df904e6193e7ab438577269426aa3ab
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -239,7 +239,7 @@ PlayerSettings:
   tvOSManualSigningProvisioningProfileID: 
   appleEnableAutomaticSigning: 0
   clonedFromGUID: 00000000000000000000000000000000
-  AndroidTargetDevice: 0
+  AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -263,8 +263,8 @@ PlayerSettings:
     m_Enabled: 1
     m_Devices:
     - Oculus
-    - OpenVR
     - split
+    - OpenVR
   - m_BuildTarget: Metro
     m_Enabled: 1
     m_Devices:
