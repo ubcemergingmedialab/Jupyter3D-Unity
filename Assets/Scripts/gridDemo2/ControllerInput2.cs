@@ -24,10 +24,7 @@ public class ControllerInput2 : MonoBehaviour
 
     private void Start()
     {   // instantiating the characyerController
-        characterController = GetComponent<CharacterController>();
-    }
-
-    // This method controllers how the function can be forwards and backwards
+        characterController = GetComponent<CharacterController>();    // This method controllers how the function can be forwards and backwards
     // Created by Harvey Huag with the help of Rayhan Fakim
     private void joystickXYFunctionality()
     {
