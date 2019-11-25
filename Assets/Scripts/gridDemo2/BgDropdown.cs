@@ -9,8 +9,9 @@ public class BgDropdown : MonoBehaviour
     public Dropdown dropdown;
 
     public Material[] backgrounds;  // background materials
+    public Material def;
     public Sprite[] thumbnails;     // background thumbnails
-    public Sprite def;
+    public Sprite defthumb;
 
     Material skybox;
 
@@ -24,7 +25,7 @@ public class BgDropdown : MonoBehaviour
 
         // Allocate space for default "no skybox" option
 
-        var noSkybox = new Dropdown.OptionData("Default");
+        var noSkybox = new Dropdown.OptionData("Default", defthumb);
         skyboxOptions.Add(noSkybox);
 
         var listEnumerator = backgrounds.GetEnumerator();
@@ -48,7 +49,7 @@ public class BgDropdown : MonoBehaviour
         // Debug.Log("value is " + value);
         if(dropdown.value == 0)
         {
-            RenderSettings.skybox = null;
+            RenderSettings.skybox = def;
         }
         else
         {
