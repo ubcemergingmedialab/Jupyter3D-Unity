@@ -6,7 +6,7 @@ This repository hosts the Jupyter3D project, a set of tools to allow users to di
 
 ### Version 1.1 Update
 
-Version 1.1 includes a number of new features as well as improvements for the Jupyter Project. This udapte: 
+This version includes a number of new features as well as improvements for the Jupyter Project. This udapte: 
 - Removes majority of the controls of the application from the controllers. 
 - Adds a new menu on the scene to allow users to adjust wave properties. 
 - Improves a number of visual elements and overall user experience.  
