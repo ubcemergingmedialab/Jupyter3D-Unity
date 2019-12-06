@@ -1414,7 +1414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -128.8, y: 84.9}
+  m_AnchoredPosition: {x: -146.3, y: 84.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678035989
@@ -1481,14 +1481,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.89705884, g: 0.03957611, b: 0.03957611, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1bfaf9fae448b7b4da72c19508c79a12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ab446b028aa9f246a24762390303504, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3871,6 +3871,8 @@ GameObject:
   - component: {fileID: 1463976809}
   - component: {fileID: 1463976808}
   - component: {fileID: 1463976811}
+  - component: {fileID: 1463976812}
+  - component: {fileID: 1463976813}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -3885,7 +3887,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1463976806}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -19.2}
   m_LocalScale: {x: 0.25001717, y: 1.0127354, z: 1}
   m_Children: []
   m_Father: {fileID: 1839056813}
@@ -3893,7 +3895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.3, y: -89.4}
+  m_AnchoredPosition: {x: -44.7, y: -89.4}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463976808
@@ -3915,10 +3917,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5288711, g: 0.777543, b: 0.9852941, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3935,8 +3937,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1463976811}
-        m_MethodName: playScene
+      - m_Target: {fileID: 1463976806}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3967,11 +3969,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fdaa0aed9028e5341b0a05352c2e21ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 493a14aba46a93f4184a9c95460b6298, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -3992,6 +3994,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33b4b462aeddfe449383c48c3240a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1463976812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1463976806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cb960434a4c5643bebee3c995d9b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShadowOffset: {x: 0.2, y: 0.2}
+  ShadowMaterial: {fileID: 2100000, guid: 658749033fbb59c42b4e7c34c4a165fc, type: 2}
+  spriteRenderer: {fileID: 0}
+  shadowGameobject: {fileID: 0}
+--- !u!114 &1463976813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1463976806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0, y: 0}
+  m_UseGraphicAlpha: 1
 --- !u!4 &1551619400 stripped
 Transform:
   m_PrefabParentObject: {fileID: 450334, guid: 12ee41758a687f54e98120e486ccd16e, type: 2}
@@ -5043,6 +5074,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
