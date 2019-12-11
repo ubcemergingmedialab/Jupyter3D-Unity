@@ -1,0 +1,40 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node2 [label="MonoBehaviour",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node2 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="BgDropdown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_bg_dropdown.html",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="BoxColliderSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_box_collider_size.html",tooltip=" "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="BoxColliderSize2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_box_collider_size2.html",tooltip=" "];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="buttonScript",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classbutton_script.html",tooltip=" "];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ControllerInput",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_controller_input.html",tooltip=" "];
+  Node2 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ControllerInput2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_controller_input2.html",tooltip=" "];
+  Node2 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="Flag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_flag.html",tooltip=" "];
+  Node2 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="ProceduralBall",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_procedural_ball.html",tooltip=" "];
+  Node2 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ProceduralGrid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_procedural_grid.html",tooltip=" "];
+  Node2 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="ProceduralGrid2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_procedural_grid2.html",tooltip=" "];
+  Node2 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="ProceduralPlane",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_procedural_plane.html",tooltip=" "];
+  Node2 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="SpeedSlider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_speed_slider.html",tooltip=" "];
+  Node2 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="TextEquation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_text_equation.html",tooltip=" "];
+  Node2 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="UIDrag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_u_i_drag.html",tooltip=" "];
+  Node2 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="WaveDropdown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_wave_dropdown.html",tooltip=" "];
+  Node2 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="WaveSlider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_wave_slider.html",tooltip=" "];
+}
