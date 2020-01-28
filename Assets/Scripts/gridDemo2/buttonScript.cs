@@ -32,9 +32,18 @@ public class buttonScript : MonoBehaviour {
 
 	// When called, loads the scene called "welcomeScene", which contains
 	// the project's new welcome scene with instructions/tutorials.
-	public void NextScene(){
+	public void switchToWelcomeScene(){
 		SceneManager.LoadScene("welcomeScene");
 	}
+
+    // When called, loads the scene called "gridDemo2", which contains
+    // the project's main scene.
+    public void switchToGridDemo()
+    {
+        SceneManager.LoadScene("gridDemo2");
+    }
+
+
 
 
 }
