@@ -397,18 +397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a93f3b70651314aaa4356d86566f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuID: 0
   menuPanels:
   - {fileID: 1607762956}
   - {fileID: 729838601}
-  - {fileID: 932325649}
-  - {fileID: 340348816}
-  - {fileID: 889469803}
   introductionPanel: {fileID: 1607762956}
-  TutorialOnePanel: {fileID: 729838601}
-  TutorialTwoPanel: {fileID: 932325649}
-  TutorialThreePanel: {fileID: 340348816}
-  TutorialFourPanel: {fileID: 889469803}
 --- !u!1 &194574229
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &340348817
 RectTransform:
   m_ObjectHideFlags: 0
@@ -860,15 +852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a93f3b70651314aaa4356d86566f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuID: 0
   menuPanels:
   - {fileID: 932325649}
   - {fileID: 340348816}
   introductionPanel: {fileID: 0}
-  TutorialOnePanel: {fileID: 0}
-  TutorialTwoPanel: {fileID: 0}
-  TutorialThreePanel: {fileID: 0}
-  TutorialFourPanel: {fileID: 0}
 --- !u!114 &359080341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,15 +1200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a93f3b70651314aaa4356d86566f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuID: 0
   menuPanels:
   - {fileID: 729838601}
   - {fileID: 932325649}
   introductionPanel: {fileID: 0}
-  TutorialOnePanel: {fileID: 0}
-  TutorialTwoPanel: {fileID: 0}
-  TutorialThreePanel: {fileID: 0}
-  TutorialFourPanel: {fileID: 0}
 --- !u!114 &666044893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,7 +1372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &729838602
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1745,7 +1727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &889469804
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1950,7 +1932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &932325650
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2904,15 +2886,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a93f3b70651314aaa4356d86566f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuID: 0
   menuPanels:
   - {fileID: 729838601}
-  - {fileID: 340348816}
+  - {fileID: 889469803}
   introductionPanel: {fileID: 0}
-  TutorialOnePanel: {fileID: 0}
-  TutorialTwoPanel: {fileID: 0}
-  TutorialThreePanel: {fileID: 0}
-  TutorialFourPanel: {fileID: 0}
 --- !u!114 &1892235759
 MonoBehaviour:
   m_ObjectHideFlags: 0
