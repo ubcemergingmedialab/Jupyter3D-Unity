@@ -12,6 +12,13 @@ This version includes a number of new features as well as improvements for the J
 - Improves a number of visual elements and overall user experience.  
 
 
+### Version 1.2 Update (Release: Feb 4, 2020)
+
+This version includes a major new welcome scene to support usability. This update includes:
+- A new welcome scene when the project is started.
+- Gives the user the choice to go through a simple tutorial on VR and the controls for the project.
+
+
 ### Tools & Technologies Used
 - Unity 2017.4.26f
 - Oculus
@@ -43,12 +50,12 @@ This version includes a number of new features as well as improvements for the J
   Mathematics and Statistics, University of Calgary
   
 ### Current Student Team
-- Kyle Mas, Project Technical Lead (September 2019 - present)
-- Sandy Co, UX/UI Design Lead (September 2019 - present)
-- William Van, Developer (September 2019 - present)
-- Clarence Adrian, Developer (September 2019 - present)
-- Brian Chau, Developer (September 2019 - present)
-- Achintya Chandwani, Developer (October 2019 - present)
+- Kyle Mas, Project Technical Lead (September 2019 - February 2020)
+- Sandy Co, UX/UI Design Lead (September 2019 - February 2020)
+- William Van, Developer (September 2019 - February 2020)
+- Clarence Adrian, Developer (September 2019 - February 2020)
+- Brian Chau, Developer (September 2019 - February 2020)
+- Achintya Chandwani, Developer (October 2019 - February 2020)
 
 
 
