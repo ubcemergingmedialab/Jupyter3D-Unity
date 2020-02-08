@@ -4,6 +4,12 @@
 
 This repository hosts the Jupyter3D project, a set of tools to allow users to display and interact with data in Virtual Reality (VR). Jupyter's main goal is to help students' understanding and intuition for physics without the expense of building and operating a physics lab. The project creates a VR experience in which studdents can visualize and walk around 3D static wave surface which is a "snapshot" or series of snapshots of a physically realistic, dynamic wave. Students can demonstrate their knowledge by placing a virtual "flagpole" at a spot on the wave surface, showing that they have found an area of interest in the simulation. 
 
+### Version 1.2 Update (Release: Feb 4, 2020)
+
+This version includes a major new welcome scene to support usability. This update includes:
+- A new welcome scene when the project is started.
+- Gives the user the choice to go through a simple tutorial on VR and the controls for the project.
+
 ### Version 1.1 Update (Release Date: December 5, 2019)
 
 This version includes a number of new features as well as improvements for the Jupyter Project. This udapte: 
@@ -11,12 +17,6 @@ This version includes a number of new features as well as improvements for the J
 - Adds a new menu on the scene to allow users to adjust wave properties. 
 - Improves a number of visual elements and overall user experience.  
 
-
-### Version 1.2 Update (Release: Feb 4, 2020)
-
-This version includes a major new welcome scene to support usability. This update includes:
-- A new welcome scene when the project is started.
-- Gives the user the choice to go through a simple tutorial on VR and the controls for the project.
 
 
 ### Tools & Technologies Used
