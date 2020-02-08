@@ -52,6 +52,7 @@ This version includes a number of new features as well as improvements for the J
 ### Current Student Team
 - Kyle Mas, Project Technical Lead (September 2019 - February 2020)
 - Sandy Co, UX/UI Design Lead (September 2019 - February 2020)
+- Anne Caute, UX/UI Designer (October 2019 - February 2020)
 - William Van, Developer (September 2019 - February 2020)
 - Clarence Adrian, Developer (September 2019 - February 2020)
 - Brian Chau, Developer (September 2019 - February 2020)
